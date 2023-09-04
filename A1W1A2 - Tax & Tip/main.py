@@ -13,13 +13,12 @@
 # Output example:
 # Tax: 4.956 , Tip: 3.540 , Total: 32.096
 
-print("Enter costs of the meal:")
 price = float(input())
 tip = price / 100 * 15
 tax = price / 100 * 21
 total = price + tip + tax
 
-print("Meal price: %.3f" % price)
-print("Meal tip: %.3f" % tip)
-print("Meal tax: %.3f" % tax)
-print("Meal total: %.3f" % total)
+# print("price: %.3f" % price)
+print("Tax: %.3f" % tax)
+print(", Tip: %.3f" % tip)
+print(", Total: %.3f" % total)
