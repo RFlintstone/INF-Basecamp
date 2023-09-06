@@ -15,6 +15,7 @@ y = int(input())
 m = y * 12
 d = y * 365
 
+
 print("Years: " + str(y))
 print("Months: " + str(m) + ",")
 print("Days: " + str(d))
