@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55cdd77b-df4f-4045-88f1-49075cecf946" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/A1W2P1 - Even or Odd/A1W2P1 documentation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/A1W2P1 - Even or Odd/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/A1W2P2 - Leap year/A1W2P1 documentation.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/A1W2P2 - Leap year/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/INF-Basecamp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/INF-Basecamp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A1W2A1 - Immediate successor/A1W1P6 documentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/A1W2A1 - Immediate successor/A1W2A1 documentation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1W2P1 - Even or Odd/A1W2P1 documentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/A1W2P1 - Even or Odd/A1W2P1 documentation.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,18 +46,19 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/rwfli/Documents/Studie/INF/INF-Basecamp/A1W2P1 - Even or Odd",
+    "last_opened_file_path": "C:/Users/rwfli/Documents/Studie/INF/INF-Basecamp/A1W2P2 - Leap year",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rwfli\Documents\Studie\INF\INF-Basecamp\A1W2P2 - Leap year" />
       <recent name="C:\Users\rwfli\Documents\Studie\INF\INF-Basecamp\A1W2P1 - Even or Odd" />
       <recent name="C:\Users\Ruben\Documents\2. Studie\INF\Jaar 1\INF-Basecamp\A1W2A1 - Immediate successor" />
     </key>
@@ -75,7 +78,7 @@
       <workItem from="1694093564165" duration="122000" />
       <workItem from="1694093792285" duration="63000" />
       <workItem from="1694093932153" duration="79000" />
-      <workItem from="1694094019790" duration="153000" />
+      <workItem from="1694094019790" duration="2389000" />
     </task>
     <servers />
   </component>
@@ -84,6 +87,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/INF_Basecamp$test.coverage" NAME="test Coverage Results" MODIFIED="1693834989520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/INF_Basecamp$main.coverage" NAME="main Coverage Results" MODIFIED="1694093608795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/A1W2P1 - Even or Odd" />
+    <SUITE FILE_PATH="coverage/INF_Basecamp$main.coverage" NAME="main Coverage Results" MODIFIED="1694096204449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/A1W2P2 - Leap year" />
   </component>
 </project>
