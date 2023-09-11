@@ -1,9 +1,14 @@
 ## Assignment:
 A1W2A1
+
 ### Creation Date:
 06-09-2023
+
 ### What did I learn?
 How Codegrade handles errors - I also overlooked relatively simple solutions in favour of more difficult ones which could be written with fewer lines. This resulted in spending more time on this assignment than I wanted. 
+
+### How did I learn it?
+I've looked at the errors which were outputted by Codegrade and compared them to the errors I got from my IDE (PyCharm).
 
 ## Code Snippet
 ```python

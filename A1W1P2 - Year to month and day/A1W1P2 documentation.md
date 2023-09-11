@@ -2,8 +2,13 @@
 A1W1P2
 ### Creation Date:
 04-09-2023
+
 ### What did I learn?
 I learned nothing with this assignment.
+
+### How did I learn it?
+Not applicable
+
 ## Code Snippet
 ```python
 # Print what we need

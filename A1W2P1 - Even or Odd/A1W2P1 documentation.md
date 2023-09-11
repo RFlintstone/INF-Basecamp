@@ -1,9 +1,14 @@
 ## Assignment:
 A1W2A1
+
 ### Creation Date:
 07-09-2023
+
 ### What did I learn?
 Nothing
+
+### How did I learn it?
+Not applicable
 
 ## Code Snippet
 ```python

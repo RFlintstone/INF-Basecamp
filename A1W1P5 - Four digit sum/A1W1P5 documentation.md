@@ -1,9 +1,15 @@
 ## Assignment:
 A1W1P5
+
 ### Creation Date:
 04-09-2023
+
 ### What did I learn?
-I learned that you can convert a string to an array using 
+I learned that you can convert a string to an array using
+
+### How did I learn it?
+Not applicable
+
 ```python
 input_to_array = [char for char in input_to_str]
 ```

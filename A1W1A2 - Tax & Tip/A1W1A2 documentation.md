@@ -1,9 +1,15 @@
 ## Assignment:
 A1W1A2
+
 ### Creation Date:
 04-09-2023
+
 ### What did I learn?
 I learned nothing with this assignment.
+
+### How did I learn it?
+Not applicable
+
 ## Code Snippet
 ```python
 # Request input and convert it to a float so we can use it in a formula with decimals

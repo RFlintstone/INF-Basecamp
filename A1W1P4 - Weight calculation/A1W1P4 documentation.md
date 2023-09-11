@@ -1,9 +1,15 @@
 ## Assignment:
 A1W1P4
+
 ### Creation Date:
 04-09-2023
+
 ### What did I learn?
 I learned nothing with this assignment.
+
+### How did I learn it?
+Not applicable
+
 ## Code Snippet
 ```python
 # Widget and Gizmo height are static

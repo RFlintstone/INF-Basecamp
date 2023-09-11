@@ -2,8 +2,12 @@
 A1W2A1
 ### Creation Date:
 07-09-2023
+
 ### What did I learn?
 I learned how to calculate a leap year
+
+### How did I learn it?
+I looked up the formula
 
 ## Code Snippet
 ```python
