@@ -1,5 +1,4 @@
-## Assignment:
-A1W1P1
+## Assignment: A1W1P1
 
 ### Creation Date:
 04-09-2023
@@ -9,6 +8,9 @@ I learned nothing with this assignment.
 
 ### How did I learn it?
 Not applicable
+
+### Why/how did I solve it?
+The input method defaults to strings, so I concatenated the input which I have called name, to "Hello" in the print method to successfully pass the assignment.
 
 ## Code Snippet
 ```python

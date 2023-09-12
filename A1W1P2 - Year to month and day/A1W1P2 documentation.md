@@ -1,5 +1,5 @@
-## Assignment:
-A1W1P2
+## Assignment: A1W1P2
+
 ### Creation Date:
 04-09-2023
 
@@ -8,6 +8,10 @@ I learned nothing with this assignment.
 
 ### How did I learn it?
 Not applicable
+
+### Why/how did I solve it?
+I wanted to have a variable for each calculation and since the input will be the year I've casted that to an int and called the variable 'y'.
+When printing I used loose print() methods to prevent one big line and to make the code a bit more readable.
 
 ## Code Snippet
 ```python

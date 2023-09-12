@@ -16,10 +16,19 @@
 # Leap year
 # Not a leap year
 
+# print casted input
 i = float(input())
+
+# leap year dividing by 4
 leap = i / 4
+
+# leap year = i
 print(i)
+
+# print leap year
 print(leap)
+
+# If leap % 2 is uneven, the leap year is uneven. Otherwhise the leap is even.
 if leap % 2:
     print("not leap")
 else:

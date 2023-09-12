@@ -1,5 +1,4 @@
-## Assignment:
-A1W1A2
+## Assignment: A1W1A2
 
 ### Creation Date:
 04-09-2023
@@ -9,6 +8,10 @@ I learned nothing with this assignment.
 
 ### How did I learn it?
 Not applicable
+
+### Why/how did I solve it?
+Because I needed decimals and didn't want to write more code than necessary I cast the input to float and force the decimal that way.
+Then when printing I use `%.3f` to say I want to print 3 decimals if the outcome of the calculations provide a 3 decimal outcome.
 
 ## Code Snippet
 ```python

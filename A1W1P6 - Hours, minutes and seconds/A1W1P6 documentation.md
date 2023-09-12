@@ -1,5 +1,4 @@
-## Assignment:
-A1W1P6
+## Assignment: A1W1P6
 
 ### Creation Date:
 04-09-2023
@@ -9,6 +8,11 @@ I learned nothing with this assignment.
 
 ### How did I learn it?
 Not applicable
+
+### Why/how did I solve it?
+I wanted to have a variable for each calculation and since the input will be the amount of days I've casted that to an int and called the variable 'd' to calculate the hours.
+Once you have the hours you can calculate the minutes and once you have your minutes you can calculate the seconds.
+After the calculations are done I simply printed the outcome with the variables casted to a string so concatenation is possible.
 
 ## Code Snippet
 ```python

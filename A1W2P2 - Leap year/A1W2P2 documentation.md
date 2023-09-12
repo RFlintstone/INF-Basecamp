@@ -1,5 +1,5 @@
-## Assignment:
-A1W2A1
+## Assignment: A1W2P2
+
 ### Creation Date:
 07-09-2023
 
@@ -8,6 +8,10 @@ I learned how to calculate a leap year
 
 ### How did I learn it?
 I looked up the formula
+
+### Why/how did I solve it?
+I requested user input and casted it to float. I've casted it to float because the outcome of the leap year can have decimals. 
+If we have the float we will divide it by 4 to see kickstart the calculation. Then if that result is odd it can't be a leap year, and if it is even it is (most likely) a leap year.
 
 ## Code Snippet
 ```python

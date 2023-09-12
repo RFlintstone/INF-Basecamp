@@ -1,5 +1,4 @@
-## Assignment:
-A1W1P4
+## Assignment: A1W1P4
 
 ### Creation Date:
 04-09-2023
@@ -9,6 +8,12 @@ I learned nothing with this assignment.
 
 ### How did I learn it?
 Not applicable
+
+### Why/how did I solve it?
+I've created two variables (being ``widget_height`` and ``gizmo_height``) as these values will never change and will be used globaly (hence why they are at the top).
+I then followed up, two times, with the method ``print()`` and the method ``input()`` to determine how many widgets and gizmos we have.
+When that's determined we calculate the weight total for the widgets and gizmos (``widget_total_weight`` and ``gizmo_total_weight``). 
+Then to fulfill the requirements of the assignment we add both **individual totals** to get the final total. Now if we print ``total`` we have fulfilled the requirements. 
 
 ## Code Snippet
 ```python

@@ -1,5 +1,4 @@
-## Assignment:
-A1W1A1
+## Assignment: A1W1A1
 
 ### Creation Date:
 04-09-2023
@@ -9,6 +8,13 @@ I learned nothing with this assignment.
 
 ### How did I learn it?
 Not applicable
+
+### Why/how did I solve it?
+I wanted to have a variable for each calculation and since the input will be the year I've casted that to an int and called the variable 'y'.
+When printing I used 3 loose print() methods to prevent one big line and to make the code a bit more readable. This is how it would have looked when I put everything on one line:
+```python
+print("Years: " + str(y) + "Months: " + str(m) + ", Days: " + str(d))
+```
 
 ## Code Snippet
 ```python
