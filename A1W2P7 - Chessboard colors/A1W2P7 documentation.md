@@ -3,7 +3,7 @@
 ### Creation Date: 11-09-2023
 
 ### What did I learn?
-I learned that `.lower()` and `.upper()` within Python.
+I learned that `.lower()` and `.upper()` work within Python.
 
 ### How did I learn it?
 I already knew it existed in other programming languages, so I tried it in Python as well and it worked.
