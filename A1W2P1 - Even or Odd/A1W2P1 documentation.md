@@ -1,7 +1,6 @@
 ## Assignment: A1W2P1
 
-### Creation Date:
-07-09-2023
+### Creation Date: 07-09-2023
 
 ### What did I learn?
 Nothing

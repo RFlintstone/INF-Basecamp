@@ -1,7 +1,6 @@
 ## Assignment: A1W1P5
 
-### Creation Date:
-04-09-2023
+### Creation Date: 04-09-2023
 
 ### What did I learn?
 I learned that you can convert a string to an array using
