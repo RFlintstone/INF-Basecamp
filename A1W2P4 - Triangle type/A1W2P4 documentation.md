@@ -1,4 +1,4 @@
-## Assignment: A1W2P4
+## Assignment: A1W2P4 - Triangle type
 
 ### Creation Date: 11-09-2023
 

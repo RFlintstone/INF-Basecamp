@@ -1,4 +1,4 @@
-## Assignment: A1W1A2
+## Assignment: A1W1A2 - Tax & Tip
 
 ### Creation Date: 04-09-2023
 

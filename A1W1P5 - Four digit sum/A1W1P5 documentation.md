@@ -1,4 +1,4 @@
-## Assignment: A1W1P5
+## Assignment: A1W1P5 - Four digit sum
 
 ### Creation Date: 04-09-2023
 

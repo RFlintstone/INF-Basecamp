@@ -1,4 +1,4 @@
-## Assignment: A1W1P4
+## Assignment: A1W1P4 - Weight calculation
 
 ### Creation Date: 04-09-2023
 

@@ -1,4 +1,4 @@
-## Assignment: A1W2P2
+## Assignment: A1W2P2 - Leap year
 
 ### Creation Date: 11-09-2023
 

@@ -1,4 +1,4 @@
-## Assignment: A1W1P6
+## Assignment: A1W1P6 - Hours, minutes and seconds
 
 ### Creation Date: 04-09-2023
 

@@ -1,4 +1,4 @@
-## Assignment: A1W2P3
+## Assignment: A1W2P3 - Sides to shape
 
 ### Creation Date: 11-09-2023
 

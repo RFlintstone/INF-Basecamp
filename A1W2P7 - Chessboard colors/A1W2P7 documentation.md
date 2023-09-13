@@ -1,4 +1,4 @@
-## Assignment: A1W2P7
+## Assignment: A1W2P7 - Chessboard colors
 
 ### Creation Date: 11-09-2023
 

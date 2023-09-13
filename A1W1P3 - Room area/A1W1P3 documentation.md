@@ -1,4 +1,4 @@
-## Assignment: A1W1P3
+## Assignment: A1W1P3 - Room area
 
 ### Creation Date: 04-09-2023
 

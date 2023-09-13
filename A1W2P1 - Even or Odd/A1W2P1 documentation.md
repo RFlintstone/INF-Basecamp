@@ -1,4 +1,4 @@
-## Assignment: A1W2P1
+## Assignment: A1W2P1 - Even or Odd
 
 ### Creation Date: 07-09-2023
 

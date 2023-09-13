@@ -1,4 +1,4 @@
-## Assignment: A1W2A1
+## Assignment: A1W2A1 - Immediate successor 
 
 ### Creation Date: 06-09-2023
 

@@ -1,4 +1,4 @@
-## Assignment: A1W1P2
+## Assignment: A1W1P2 - Year to month and day
 
 ### Creation Date: 04-09-2023
 
