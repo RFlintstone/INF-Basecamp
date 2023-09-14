@@ -4,17 +4,18 @@
 #
 # Valid patterns:
 # ✓ XX-99-99
-# ✓ 99-99-XX
-# - 99-XX-99
-# - XX-99-XX
-# ✓ XX-XX-99
 # ✓ 99-XX-XX
-# - 99-XXX-9
-# - 9-XXX-99
-# - XX-999-X
-# - X-999-XX
-# - XXX-99-X
-# - 9-XX-999
+# ✓ 99-99-XX
+# ✓ XX-XX-99
+# ✓ 99-XX-99
+# ✓ XX-99-XX
+# ✓ 99-XXX-9
+# ✓ XX-999-X
+# ✓ 9-XXX-99
+# ✓ X-999-XX
+# ✓ XXX-99-X
+# ✓ 9-XX-999
+
 #
 # Input examples:
 # License: A-149-HH
@@ -24,32 +25,55 @@
 # Valid
 # Invalid
 
-license_plate = input()
-license_plate_length = len(license_plate)
+def validate_license(license):
+    # Split into parts
+    parts = license.split("-")
+    print(parts)
+    # print(parts[0])
+    # print(parts[1])
+    # print(parts[2])
 
-good = 0
+    # Validate format
+    if len(parts) != 3:
+        return False
 
-print(license_plate_length)
+    if parts[2].isnumeric() != parts[0].isnumeric():
+        return False
 
-# XX-99-99
-# 9-XXX-99
-# XXX-99-X
-if license_plate_length == 8:
-    if license_plate[2] == "-" and license_plate[5] == "-":
-        if (license_plate[0] + license_plate[1]) == (license_plate[3] + license_plate[4]):
-            if (license_plate[6] + license_plate[7]) != (license_plate[3] + license_plate[4]):
-                good = 1
-        if (license_plate[3] + license_plate[4]) == (license_plate[6] + license_plate[7]):
-            if (license_plate[0] + license_plate[1]) != (license_plate[3] + license_plate[4]):
-                good = 1
+    # XX-99-99
+    # 99-XX-XX
+    if parts[1] == parts[2] and parts[0] != parts[1]:
+        return True
 
-    if license_plate[2] == "-" and license_plate[5] == "-":
+    # 99-99-XX
+    # XX-XX-99
+    if parts[0] == parts[1] and parts[0] != parts[2]:
+        return True
+
+    # 99-XX-99
+    # XX-99-XX
+    if parts[0] == parts[2] and parts[0] != parts[1]:
+        return True
+
+    if parts[0] != parts[1] and parts[0] != parts[2]:
+        # 99-XXX-9
+        # XX-999-X
+        # XXX-99-X
+        if (len(parts[0]) + len(parts[1])) == 5 and len(parts[2]) == 1:
+            return True
+
+        # 9-XXX-99
+        # X-999-XX
+        # 9-XX-999
+        if (len(parts[1]) + len(parts[2])) == 5 and len(parts[0]) == 1:
+            return True
 
 
-    if good:
+def _main_():
+    license = input("License: ")
+    if validate_license(license):
         print("Valid")
     else:
-        print("Not Valid")
+        print("Invalid")
 
-else:
-    print("Lince plate length is NOT correct!")
+_main_()
