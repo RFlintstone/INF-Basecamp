@@ -113,4 +113,5 @@ def main():
 
 
 # Run the script.
-main()
+while True:
+    main()
