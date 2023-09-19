@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55cdd77b-df4f-4045-88f1-49075cecf946" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/A1W3P1 - Simple palindrome/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/A1W3P2 - Advanced palindrome/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pull.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A1W3A1 - Predefined templates/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/A1W3A1 - Predefined templates/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1W2P8 - License plate/A1W2P8 - License plate.md" beforeDir="false" afterPath="$PROJECT_DIR$/A1W2P8 - License plate/A1W2P8 - License plate.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1W3A1 - Predefined templates/A1W3A1 - Predefined templated.md" beforeDir="false" afterPath="$PROJECT_DIR$/A1W3A1 - Predefined templates/A1W3A1 - Predefined templated.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1W3P1 - Simple palindrome/A1W3P1 - Simple palindrome.md" beforeDir="false" afterPath="$PROJECT_DIR$/A1W3P1 - Simple palindrome/A1W3P1 - Simple palindrome.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1W3P2 - Advanced palindrome/A1W3P2 - Advanced palindrome.md" beforeDir="false" afterPath="$PROJECT_DIR$/A1W3P2 - Advanced palindrome/A1W3P2 - Advanced palindrome.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation template.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation template.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +78,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.10" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/A1W3A1 - Predefined templates" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -128,7 +130,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INF_Basecamp$main.coverage" NAME="main Coverage Results" MODIFIED="1695039159838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/A1W3P1 - Simple palindrome" />
     <SUITE FILE_PATH="coverage/INF_Basecamp$test.coverage" NAME="test Coverage Results" MODIFIED="1693834989520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/INF_Basecamp$main.coverage" NAME="main Coverage Results" MODIFIED="1695039159838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/A1W3P1 - Simple palindrome" />
   </component>
 </project>
