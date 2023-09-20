@@ -14,7 +14,7 @@
 width = int(input("Width: "))
 height = int(input("Height: "))
 
-# Create a list so we can store the box and output it later on
+# Create a list, so we can store the box and output it later on
 box = list()
 
 # Create a counter and a loop with the range 0 until width * height
