@@ -5,7 +5,9 @@ DEBUG_MODE = False
 
 # Create our inventory
 inv = list()
-inv.append("wrench")
+
+if DEBUG_MODE:
+    inv.append("wrench")
 
 
 # Create a method so we can execute 'commands'
@@ -53,11 +55,14 @@ def command(cmd_arg, action_arg):
 
         return action_doable
 
-        # check for the inspect command
-
+    # check for the inspect command
     if cmd_arg == "inspect":
         # run through list of interactables and check wether inspect is possible.
         interactable = ["chest"]
+
+        if action_arg == "inv" or action_arg == "inventory":
+            print(inv)
+
         if action_arg in interactable:
             action_doable = action_arg
         else:
@@ -88,6 +93,9 @@ if __name__ == '__main__':
     # Return item which is inspected
     # Set "cmd_arg" as "inspect" and "action_arg" as the item you want to inspect.
     inspect = command("inspect", "chest")
+    print("INSPECT: " + str(inspect))
+
+    inspect = command("inspect", "inv")
     print("INSPECT: " + str(inspect))
 
     # Return True or False
