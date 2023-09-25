@@ -10,6 +10,8 @@ inv.append("wrench")
 
 # Create a method so we can execute 'commands'
 def command(cmd_arg, action_arg):
+    action_doable = False
+
     # Lower the command and action
     cmd_arg = cmd_arg.lower()
     action_arg = action_arg.lower()
@@ -28,14 +30,17 @@ def command(cmd_arg, action_arg):
             # Print our (updated) inventory if debug mode is on
             if DEBUG_MODE:
                 print(inv)
+            action_doable = True
         # If we don't have the item we are trying to use
         else:
             # Print that we don't have the item
             print("You don't have a(n) " + action_arg + " in your inventory")
 
+        return action_doable
 
 if __name__ == '__main__':
     # Set "cmd_arg" as "use" and "action_arg" as the item you want to use.
-    command("use", "WRENCH")
+    use = command("use", "WRENCH")
+    print(use)
 
 
