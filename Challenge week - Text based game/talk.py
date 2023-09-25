@@ -1,4 +1,4 @@
-import speak as dialog
+import dialog_trigger as dialog
 
 # Debugging True or False
 DEBUG_MODE = False
