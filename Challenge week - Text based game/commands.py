@@ -59,7 +59,7 @@ def command(cmd_arg, action_arg):
         # run through list of interactables and check wether inspect is possible.
         interactable = ["chest"]
         if action_arg in interactable:
-            action_doable = True
+            action_doable = action_arg
         else:
             print("There is nothing like that in this room.")
 
@@ -82,10 +82,10 @@ if __name__ == '__main__':
 
     # Return True or False
     # Set "cmd_arg" as "use" and "action_arg" as the item you want to use.
-    use = command("use", "WRENCH")
+    use = command("use", "wrench")
     print("USE: " + str(use))
 
-    # Return True or False
+    # Return item which is inspected
     # Set "cmd_arg" as "inspect" and "action_arg" as the item you want to inspect.
     inspect = command("inspect", "chest")
     print("INSPECT: " + str(inspect))
