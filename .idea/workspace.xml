@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55cdd77b-df4f-4045-88f1-49075cecf946" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/A1W3P5 - Multiplication table/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/A1W3P6 - Binary to Decimal/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/A1W3P7 - Truth tables/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/INF-Basecamp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/INF-Basecamp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenge week - Text based game/use.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A1W3P3 - Modular rectangles/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/A1W3P3 - Modular rectangles/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1W3P7 - Truth tables/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/A1W3P7 - Truth tables/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +112,7 @@
       <workItem from="1694693282470" duration="8654000" />
       <workItem from="1695127655214" duration="26000" />
       <workItem from="1695127692115" duration="194000" />
+      <workItem from="1695629020019" duration="798000" />
     </task>
     <servers />
   </component>
@@ -134,8 +131,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/INF_Basecamp$main.coverage" NAME="main Coverage Results" MODIFIED="1695214446755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/A1W3P6 - Binary to Decimal" />
+    <SUITE FILE_PATH="coverage/INF_Basecamp$main.coverage" NAME="main Coverage Results" MODIFIED="1695215217558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/A1W3P7 - Truth tables" />
     <SUITE FILE_PATH="coverage/INF_Basecamp$Main.coverage" NAME="Main Coverage Results" MODIFIED="1695127856927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/INF_Basecamp$test.coverage" NAME="test Coverage Results" MODIFIED="1693834989520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/INF_Basecamp$use.coverage" NAME="use Coverage Results" MODIFIED="1695629289046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Challenge week - Text based game" />
   </component>
 </project>

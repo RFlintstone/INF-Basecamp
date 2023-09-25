@@ -14,3 +14,15 @@
 # OR
 # ...
 
+inputs = []
+for a in [True, False]:
+    for b in [True, False]:
+        inputs.append((a, b))
+
+print("AND")
+for a, b in inputs:
+    print(f"{a} + {b} = {a and b}")
+
+print("\nOR")
+for a, b in inputs:
+    print(f"{a} + {b} = {a or b}")
