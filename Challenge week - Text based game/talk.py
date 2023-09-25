@@ -12,7 +12,7 @@ def command(cmd_arg, action_arg):
     cmd_arg = cmd_arg.lower()
     action_arg = action_arg.lower()
 
-    # If we are going to use an item
+    # If we want to talk
     if cmd_arg == "talk":
         if dialog.dialog_check(action_arg, "greeting", 0):
             action_doable = True
