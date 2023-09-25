@@ -12,6 +12,11 @@
 # Output example:
 # 10
 
+# Request user input
 num = input()
+
+# Convert the (binary) input to an integer
 integer = int(num, 2)
+
+# Print the result (1010 should 10)
 print(integer)

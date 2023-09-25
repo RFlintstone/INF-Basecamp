@@ -12,35 +12,42 @@
 # 2  2  4  6  8 10 12 14 16 18 20
 # ...
 
-m_1 = list()
-m_2 = list()
-r = list()
-
+# Define lists
 column = list()
 row = list()
-tables = [[] for _ in range(11)]  # 11 inner lists
+tables = list()
 
-# Create rows and columns
+# Create columns
 for n in range(0, 11):
     if n != 0:
         column.append(str(n))
-        column.append("\t")
-        row.append(str(n))
-        row.append("\n")
+    column.append("\t")
+
+# Create rows
+for n in range(1, 10):
+    row.append(str(n) + "\n")
+
+# Create tables
+for i in range(0, 11):
+    row = ""
+    # Row 1
+    if i == 0:
+        for j in range(1, 11):
+            row += str(j) + "\t"
+    # All other rows
     else:
-        column.append("\t")
+        for j in range(1, 11):
+            row += str(j * i) + "\t"
+    # Add the row
+    tables.append(row)
 
-for i in range(1, 11):
-    for j in range(1, 11):
-        tables[j - 1].append(str(j * i))
-        tables[j - 1].append("\t")
-
+# Join lists so they both become a string
 column_joined = "".join(column)
 row_joined = "".join(row)
 
-print(column_joined)
-print(row_joined)
-
-for table in tables:
-    for x in range(len(table)):
-        print(f"{x}\t{''.join(table)}")
+# Print each index (i) with their value (table) from the list (tables)
+for i, table in enumerate(tables):
+    if i < 1:
+        print(f"\t{table}")
+    else:
+        print(f"{i}\t{table}")
