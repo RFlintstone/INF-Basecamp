@@ -47,6 +47,7 @@ def hallway1(rooms, current_room):
 
             if inspect == "exit" or inspect == "exits":
                 d = rooms[current_room]['exits']
+                print("You see exits on the following sides:")
                 print(', '.join(d.keys()))
 
         # Call USE c.command on key
@@ -65,6 +66,7 @@ def hallway1(rooms, current_room):
             if i[0].lower() == "talk" and talk is True:
                 print("Dialog with Bob")
 
+        print("\n")
         return stop_loop
 
 
