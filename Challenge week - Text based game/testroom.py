@@ -22,7 +22,8 @@ def hallway1(rooms, current_room):
     stop_loop = False
 
     i = input("What do you want to do?").split(" ")
-    print(i)
+    # print(i)
+
     if len(i) < 2:
         print("You didn't specify an action")
         stop_loop = False
@@ -38,8 +39,15 @@ def hallway1(rooms, current_room):
 
         # Call INSPECT c.command on chest
         if i[0].lower() == "inspect":
-            inspect = c.command("inspect", "chest")
+            inspect = c.command("inspect", i[1])
             print("INSPECT: " + str(inspect))
+
+            if inspect == "room":
+                print(rooms[current_room]['inspect_description'])
+
+            if inspect == "exit" or inspect == "exits":
+                d = rooms[current_room]['exits']
+                print(', '.join(d.keys()))
 
         # Call USE c.command on key
         if i[0].lower() == "use":

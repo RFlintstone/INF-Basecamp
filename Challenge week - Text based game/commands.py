@@ -56,12 +56,12 @@ def command(cmd_arg, action_arg):
     # check for the inspect command
     if cmd_arg == "inspect":
         # run through list of interactables and check wether inspect is possible.
-        interactable = ["inventory", "inv", "chest"]
+        interactable = ["inventory", "inv", "room", "exit", "exits", "chest"]
 
         if action_arg == "inv" or action_arg == "inventory":
             print(inv)
 
-        if action_arg in interactable:
+        if action_arg.lower() in interactable:
             action_doable = action_arg
         else:
             print("There is nothing like that in this room.")

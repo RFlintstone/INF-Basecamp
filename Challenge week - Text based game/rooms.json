@@ -1,6 +1,7 @@
 {
     "Start": {
-        "description": "You are in a small room with a wooden chest in the corner.",
+        "description": "You are in a small room",
+        "inspect_description": "You see a wooden chest in the corner.",
         "exits": {
           "east": "Hallway"
         },
@@ -12,6 +13,7 @@
 
     "Hallway": {
         "description": "You are in a long hallway.",
+        "inspect_description": "You don't see anything particular which you are interested in",
         "exits": {
           "west": "Start",
           "north": "Dungeon"
@@ -22,6 +24,7 @@
 
     "Dungeon": {
         "description": "You are in a dark dungeon.",
+        "inspect_description": "This room is lit but it does look very dangerous. You better don't do anything stupid.",
         "exits": {},
         "items": ["torch"],
         "npcs": []
