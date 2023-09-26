@@ -27,7 +27,7 @@ def command(cmd_arg, action_arg):
         # variables for possible directions and direction output (interchangeable between rooms)
         directions = ["west", "east", "north", "south"]
 
-        # check if the direction is possible and give them individual outpust for ease of use
+        # check if the direction is possible and give them individual output for ease of use
         if action_arg in directions:
             move_to = action_arg
 
