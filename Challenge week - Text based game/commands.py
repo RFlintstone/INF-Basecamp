@@ -7,6 +7,7 @@ DEBUG_MODE = False
 
 # Create our inventory
 inv = list()
+
 # Room
 current_room = ""
 
