@@ -47,18 +47,16 @@ def command(cmd_arg, action_arg):
             # Print our (updated) inventory if debug mode is on
             if DEBUG_MODE:
                 print(inv)
-            action_doable = True
+            action_doable = action_arg
         # If we don't have the item we are trying to use
         else:
             # Print that we don't have the item
             print("You don't have a(n) " + action_arg + " in your inventory")
 
-        return action_doable
-
     # check for the inspect command
     if cmd_arg == "inspect":
         # run through list of interactables and check wether inspect is possible.
-        interactable = ["chest"]
+        interactable = ["inventory", "inv", "chest"]
 
         if action_arg == "inv" or action_arg == "inventory":
             print(inv)
@@ -78,6 +76,8 @@ def command(cmd_arg, action_arg):
 
     return action_doable
 
+def add_inv(item):
+    inv.append(item)
 
 if __name__ == '__main__':
     # Return N, E, S, W or None
