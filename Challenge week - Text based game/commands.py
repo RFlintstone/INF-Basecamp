@@ -1,3 +1,5 @@
+import json
+
 import dialog_trigger as dialog
 
 # Debugging True or False
@@ -5,10 +7,11 @@ DEBUG_MODE = False
 
 # Create our inventory
 inv = list()
+# Room
+current_room = ""
 
 if DEBUG_MODE:
     inv.append("wrench")
-
 
 # Create a method so we can execute 'commands'
 def command(cmd_arg, action_arg):
@@ -25,7 +28,7 @@ def command(cmd_arg, action_arg):
 
         # check if the direction is possible and give them individual outpust for ease of use
         if action_arg in directions:
-            move_to = action_arg[0].upper()
+            move_to = action_arg
 
         # extra print in case the user does not input a wind direction
         else:
@@ -37,32 +40,25 @@ def command(cmd_arg, action_arg):
     if cmd_arg == "use":
         # Check if we have the item
         if action_arg in inv:
-            # Print the inventory if debug mode is on
-            if DEBUG_MODE:
-                print(inv)
             # Print that we are using the item
             print("Using item: " + action_arg)
             # Remove the item from our inventory
             inv.remove(action_arg)
-            # Print our (updated) inventory if debug mode is on
-            if DEBUG_MODE:
-                print(inv)
-            action_doable = action_arg
+            # Make us able to return the item we just used
+            action_doable = "u_" + action_arg
         # If we don't have the item we are trying to use
         else:
             # Print that we don't have the item
             print("You don't have a(n) " + action_arg + " in your inventory")
+            action_doable = "not_in_inv"
 
     # check for the inspect command
     if cmd_arg == "inspect":
-        # run through list of interactables and check wether inspect is possible.
-        interactable = ["inventory", "inv", "room", "exit", "exits", "chest"]
-
         if action_arg == "inv" or action_arg == "inventory":
             print(inv)
 
         if action_arg.lower() in interactable:
-            action_doable = action_arg
+            action_doable = "i_" + action_arg
         else:
             print("There is nothing like that in this room.")
 
@@ -76,8 +72,10 @@ def command(cmd_arg, action_arg):
 
     return action_doable
 
+
 def add_inv(item):
     inv.append(item)
+
 
 if __name__ == '__main__':
     # Return N, E, S, W or None

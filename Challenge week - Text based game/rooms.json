@@ -1,31 +1,34 @@
 {
-    "Start": {
+    "start": {
         "description": "You are in a small room",
         "inspect_description": "You see a wooden chest in the corner.",
         "exits": {
-          "east": "Hallway"
+          "east": "hallway"
         },
         "items": [
-          "small key"
+          "key"
         ],
         "npcs": ["Bob"]
     },
 
-    "Hallway": {
+    "hallway": {
         "description": "You are in a long hallway.",
         "inspect_description": "You don't see anything particular which you are interested in",
         "exits": {
-          "west": "Start",
-          "north": "Dungeon"
+          "west": "start",
+          "north": "dungeon"
         },
+        "interactables": ["inv","chest", "key"],
         "items": [],
         "npcs": []
     },
 
-    "Dungeon": {
+    "dungeon": {
         "description": "You are in a dark dungeon.",
         "inspect_description": "This room is lit but it does look very dangerous. You better don't do anything stupid.",
-        "exits": {},
+        "exits": {
+            "south": "hallway"
+        },
         "items": ["torch"],
         "npcs": []
     }
