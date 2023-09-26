@@ -1,0 +1,29 @@
+{
+    "Start": {
+        "description": "You are in a small room with a wooden chest in the corner.",
+        "exits": {
+          "east": "Hallway"
+        },
+        "items": [
+          "small key"
+        ],
+        "npcs": ["Bob"]
+    },
+
+    "Hallway": {
+        "description": "You are in a long hallway.",
+        "exits": {
+          "west": "Start",
+          "north": "Dungeon"
+        },
+        "items": [],
+        "npcs": []
+    },
+
+    "Dungeon": {
+        "description": "You are in a dark dungeon.",
+        "exits": {},
+        "items": ["torch"],
+        "npcs": []
+    }
+}
