@@ -14,46 +14,48 @@ Phone numbers: <number_1>, <number_2>
 
 
 def display(addressbook: list):
-    ...
+    # Variable to store our contact in
+    contact_string = ""
 
+    # Format our addressbook
+    for contact in addressbook:
+        contact_string += "=" * 30 + "\n"
+        contact_string += f"Position: {contact[0]}\n"
+        contact_string += f"First name: {contact[1]}\n"
+        contact_string += f"Last name: {contact[2]}\n"
+        contact_string += "Emails: " + ", ".join(contact[3]) + "\n"
+        contact_string += "Phone numbers: " + ", ".join(contact[4]) + "\n"
+        contact_string += "\n"
 
-'''
-return list of contacts sorted by first_name or last_name [if blank then unsorted], direction [ASC (default)/DESC])
-'''
+    # Return the addressbook so we can print it
+    return contact_string
 
 
 def list_contacts(json, direction):
-    if direction.upper() == "DESC":
-        reverse = True
-    else:
-        reverse = False
+    # Check if we want to reverse the list (the same as ascending/descending)
+    reversed = (direction.upper() == "DESC")
 
-    sorted_contacts = sorted(json, key=lambda x: x['last_name'], reverse=reverse)
+    # Sort the contacts based on the boolean
+    sorted_contacts = sorted(json, key=lambda x: x['last_name'], reverse=reversed)
 
-    addressbook = ""
+    # Make a list so we can fill the addressbook
+    addressbook = []
 
+    # Loop through the sorted contacts
     for i, contact in enumerate(sorted_contacts):
-        addressbook += "=" * 30
-        addressbook += f"\nPosition: {i + 1}\n"
-        addressbook += f"First name: {contact['first_name']}\n"
-        addressbook += f"Last name: {contact['last_name']}\n"
+        # Store our new entry in an empty list
+        entry = []
 
-        count = 0
-        addressbook += "Emails: "
-        for email in contact['emails']:
-            addressbook += f"{email}"
-            if count + 1 != len(contact['emails']):
-                addressbook += ", "
-            count += 1
+        entry.append(str(i + 1))                # Contact ID/Position
+        entry.append(contact['first_name'])     # Firstname
+        entry.append(contact['last_name'])      # Lastname
 
-        count = 0
-        addressbook += "\nPhone numbers: "
-        for number in contact['phone_numbers']:
-            addressbook += f"{number}"
-            if count + 1 != len(contact['phone_numbers']):
-                addressbook += ", "
-            count += 1
-        addressbook += "\n"
+        entry.append(contact['emails'])         # All emails
+        entry.append(contact['phone_numbers'])  # All phone numbers
+
+        addressbook.append(entry)               # Add the entry to the addressbook, which is now sorted
+
+    # Return the sorted list
     return addressbook
 
 
@@ -133,9 +135,13 @@ Don't forget to put the contacts.json file in the same location as this file!
 
 
 def main(json_file):
+    # Set action to None as we didn't do anything yet
     action = None
+
+    # Read JSON file
     addressbook = read_from_json(json_file)
 
+    # If we didn't specify an action, which should be the case, print the command list
     if action is None:
         print("[L] List contacts")
         print("[A] Add contact")
@@ -144,13 +150,21 @@ def main(json_file):
         print("[Q] Quit program")
 
     while True:
+        # Ask for new input and capitalize it
         action = input("").upper()
 
         if action == "L":
+            # Make our contact list / addressbook
             list = list_contacts(addressbook, direction="ASC")
-            print(list)
+
+            # Print our contact list / addressbook
+            dis = display(list)
+            print(dis)
+
+            # Reset action
             action = None
         elif action == "Q":
+            # Quit script, no need to reset action
             exit(1)
 
 
