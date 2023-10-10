@@ -36,7 +36,7 @@ def list_contacts(json, direction):
     reversed = (direction.upper() == "DESC")
 
     # Sort the contacts based on the boolean
-    sorted_contacts = sorted(json, key=lambda x: x['last_name'], reverse=reversed)
+    sorted_contacts = sorted(json, key=lambda x: x['id'], reverse=reversed)
 
     # Make a list so we can fill the addressbook
     addressbook = []
@@ -67,10 +67,14 @@ def add_contact(new_contact, json_file):
     for contact in contacts:
         id_list.append(contact['id'])
 
-    new_contact['id'] = max(id_list) + 1
+    if len(id_list) != 0:
+        new_contact['id'] = max(id_list) + 1
+    else:
+        new_contact['id'] = 1
 
     contacts.append(new_contact)
     write_to_json(json_file, contacts)
+
 
 '''
 remove contact by ID (integer)
@@ -86,13 +90,48 @@ def remove_contact(contact_id, json_file):
 
     write_to_json(json_file, contacts)
 
+
 '''
 merge duplicates (automated > same fullname [firstname & lastname])
 '''
 
 
-def merge_contacts():
-    print("todo: implement this function")
+def merge_contacts(json_file):
+    # Read contacts from JSON
+    contacts = read_from_json(json_file)
+
+    # List to store merged contacts
+    merged_contacts = []
+
+    # Loop through each contact
+    for contact in contacts:
+
+        # Set flag to check for duplicate
+        is_duplicate = False
+
+        # Loop through merged contacts
+        for merged_contact in merged_contacts:
+
+            # Check if first and last name match
+            if (merged_contact['first_name'] == contact['first_name'] and
+                    merged_contact['last_name'] == contact['last_name']):
+                # Found duplicate
+                is_duplicate = True
+
+                # Merge emails and phone numbers
+                merged_contact['emails'].extend(contact['emails'])
+                merged_contact['phone_numbers'].extend(contact['phone_numbers'])
+
+                # Break inner loop
+                break
+
+        # Not a duplicate
+        if not is_duplicate:
+            # Append new contact
+            merged_contacts.append(contact)
+
+    # Write merged contacts to file
+    write_to_json(json_file, merged_contacts)
 
 
 '''
@@ -105,9 +144,9 @@ def read_from_json(filename) -> list:
     addressbook = list()
     # read file
     with open(os.path.join(sys.path[0], filename)) as outfile:
-        data = json.load(outfile)
+        contacts = json.load(outfile)
         # iterate over each line in data and call the add function
-        for contact in data:
+        for contact in contacts:
             addressbook.append(contact)
 
     return addressbook
@@ -127,14 +166,14 @@ def write_to_json(filename, addressbook: list) -> None:
 
 
 '''
-main function:
+Our first function:
 # build menu structure as following
 # the input can be case-insensitive (so E and e are valid inputs)
-# [L] List contacts
-# [A] Add contact
-# [R] Remove contact
-# [M] Merge contacts
-# [Q] Quit program
+# ✓ [L] List contacts
+# ✓ [A] Add contact
+# ✓ [R] Remove contact
+# ✓ [M] Merge contacts
+# ✓ [Q] Quit program
 Don't forget to put the contacts.json file in the same location as this file!
 '''
 
@@ -153,16 +192,18 @@ def main(json_file):
 
     while True:
         # Ask for new input and capitalize it
-        action = input("").upper()
+        action = input("Please input a command").upper()
         action = action.split(" ")
 
         if action[0] == "L":
             # Read JSON file
             addressbook = read_from_json(json_file)
 
-            # Make our contact list / addressbook
+            # Make sure 'action' is always at least 2 in length
             if len(action) != 2:
                 action.append("")
+
+            # Make our contact list / addressbook
             contact_list = list_contacts(addressbook, direction=action[1])
 
             # Print our contact list / addressbook
@@ -172,17 +213,22 @@ def main(json_file):
             # Reset action
             action.clear()
         elif action[0] == "A":
-            # Contact to add
+            # Ask for user input so we can generate a contact
+            first_name = input("First name?: ")
+            last_name = input("Last name?: ")
+            emails = input("Email(s)?: ")
+            phone = input("Phone number(s)?: ")
+
+            # Format contact
             contact = {
-                "first_name": "Bob",
-                "last_name": "The Builder",
+                "id": -1,
+                "first_name": first_name,
+                "last_name": last_name,
                 "emails": [
-                    "my@email.com",
-                    "my@email.nl"
+                    emails
                 ],
                 "phone_numbers": [
-                    "0881234567",
-                    "0101234567"
+                    phone
                 ]
             }
 
@@ -193,14 +239,20 @@ def main(json_file):
             action.clear()
         elif action[0] == "R":
             # Remove contact
-            remove_contact(1, json_file)
+            remove_contact(int(input()), json_file)
+
+            # Reset action
+            action.clear()
+        elif action[0] == "M":
+            # Merge duplicate contacts
+            merge_contacts(json_file)
         elif action[0] == "Q":
             # Quit script, no need to reset action
-            exit(1)
+            return
 
 
 '''
-calling main function: 
+calling our first function:
 Do NOT change it.
 '''
 if __name__ == "__main__":

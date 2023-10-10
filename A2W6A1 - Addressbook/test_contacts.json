@@ -1,5 +1,18 @@
 [
     {
+        "id": 1,
+        "first_name": "Clark",
+        "last_name": "Kent",
+        "emails": [
+            "clark@kent.private",
+            "c.kent@dailyplanet.work"
+        ],
+        "phone_numbers": [
+            "0881234567",
+            "0101234567"
+        ]
+    },
+    {
         "id": 2,
         "first_name": "Peter",
         "last_name": "Parker",
@@ -16,37 +29,14 @@
         "first_name": "James",
         "last_name": "Doe",
         "emails": [
-            "james.doe@work.mail"
+            "james.doe@work.mail",
+            "no@work.mail"
         ],
         "phone_numbers": [
             "0612345678",
-            "0201234567"
+            "0201234567",
+            "088",
+            "112"
         ]
-    },
-    {
-        "first_name": "Bob",
-        "last_name": "The   Builder",
-        "emails": [
-            "my@email.com",
-            "my@email.nl"
-        ],
-        "phone_numbers": [
-            "0881234567",
-            "0101234567"
-        ],
-        "id": 4
-    },
-    {
-        "first_name": "Bob",
-        "last_name": "The   Builder",
-        "emails": [
-            "my@email.com",
-            "my@email.nl"
-        ],
-        "phone_numbers": [
-            "0881234567",
-            "0101234567"
-        ],
-        "id": 5
     }
 ]
