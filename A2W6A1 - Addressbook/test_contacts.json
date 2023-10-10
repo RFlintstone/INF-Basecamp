@@ -1,0 +1,52 @@
+[
+    {
+        "id": 2,
+        "first_name": "Peter",
+        "last_name": "Parker",
+        "emails": [
+            "peter@parker.me",
+            "pparker@dailybugle.com"
+        ],
+        "phone_numbers": [
+            "0677345678"
+        ]
+    },
+    {
+        "id": 3,
+        "first_name": "James",
+        "last_name": "Doe",
+        "emails": [
+            "james.doe@work.mail"
+        ],
+        "phone_numbers": [
+            "0612345678",
+            "0201234567"
+        ]
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "The   Builder",
+        "emails": [
+            "my@email.com",
+            "my@email.nl"
+        ],
+        "phone_numbers": [
+            "0881234567",
+            "0101234567"
+        ],
+        "id": 4
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "The   Builder",
+        "emails": [
+            "my@email.com",
+            "my@email.nl"
+        ],
+        "phone_numbers": [
+            "0881234567",
+            "0101234567"
+        ],
+        "id": 5
+    }
+]

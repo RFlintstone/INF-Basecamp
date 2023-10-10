@@ -44,16 +44,8 @@ def list_contacts(json, direction):
     # Loop through the sorted contacts
     for i, contact in enumerate(sorted_contacts):
         # Store our new entry in an empty list
-        entry = []
-
-        entry.append(str(i + 1))                # Contact ID/Position
-        entry.append(contact['first_name'])     # Firstname
-        entry.append(contact['last_name'])      # Lastname
-
-        entry.append(contact['emails'])         # All emails
-        entry.append(contact['phone_numbers'])  # All phone numbers
-
-        addressbook.append(entry)               # Add the entry to the addressbook, which is now sorted
+        entry = [str(i + 1), contact['first_name'], contact['last_name'], contact['emails'], contact['phone_numbers']]
+        addressbook.append(entry)  # Add the entry to the addressbook, which is now sorted
 
     # Return the sorted list
     return addressbook
@@ -68,18 +60,31 @@ add new contact:
 '''
 
 
-def add_contact(_variable_here):
-    print("todo: implement this function")
+def add_contact(new_contact, json_file):
+    contacts = read_from_json(json_file)
 
+    id_list = []
+    for contact in contacts:
+        id_list.append(contact['id'])
+
+    new_contact['id'] = max(id_list) + 1
+
+    contacts.append(new_contact)
+    write_to_json(json_file, contacts)
 
 '''
 remove contact by ID (integer)
 '''
 
 
-def remove_contact(contact_id):
-    print("todo: implement this function")
+def remove_contact(contact_id, json_file):
+    contacts = read_from_json(json_file)
 
+    for contact in contacts:
+        if contact['id'] == contact_id:
+            contacts.remove(contact)
+
+    write_to_json(json_file, contacts)
 
 '''
 merge duplicates (automated > same fullname [firstname & lastname])
@@ -138,9 +143,6 @@ def main(json_file):
     # Set action to None as we didn't do anything yet
     action = None
 
-    # Read JSON file
-    addressbook = read_from_json(json_file)
-
     # If we didn't specify an action, which should be the case, print the command list
     if action is None:
         print("[L] List contacts")
@@ -152,18 +154,47 @@ def main(json_file):
     while True:
         # Ask for new input and capitalize it
         action = input("").upper()
+        action = action.split(" ")
 
-        if action == "L":
+        if action[0] == "L":
+            # Read JSON file
+            addressbook = read_from_json(json_file)
+
             # Make our contact list / addressbook
-            list = list_contacts(addressbook, direction="ASC")
+            if len(action) != 2:
+                action.append("")
+            contact_list = list_contacts(addressbook, direction=action[1])
 
             # Print our contact list / addressbook
-            dis = display(list)
+            dis = display(contact_list)
             print(dis)
 
             # Reset action
-            action = None
-        elif action == "Q":
+            action.clear()
+        elif action[0] == "A":
+            # Contact to add
+            contact = {
+                "first_name": "Bob",
+                "last_name": "The Builder",
+                "emails": [
+                    "my@email.com",
+                    "my@email.nl"
+                ],
+                "phone_numbers": [
+                    "0881234567",
+                    "0101234567"
+                ]
+            }
+
+            # Add contact
+            add_contact(contact, json_file)
+
+            # Reset action
+            action.clear()
+        elif action[0] == "R":
+            # Remove contact
+            remove_contact(1, json_file)
+        elif action[0] == "Q":
             # Quit script, no need to reset action
             exit(1)
 
@@ -173,4 +204,4 @@ calling main function:
 Do NOT change it.
 '''
 if __name__ == "__main__":
-    main('contacts.json')
+    main('test_contacts.json')
