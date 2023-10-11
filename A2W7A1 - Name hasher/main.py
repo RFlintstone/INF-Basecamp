@@ -1,3 +1,5 @@
+import json
+
 dict_key_value = {}
 encoded_values = []
 decoded_values = []
@@ -7,14 +9,29 @@ decoded_values = []
 # already set key/hashmap make sure to only convert values that are in the key, if the value is not present,
 # use its own value
 def encode_string(data: str, key: str = None) -> str:
-    print("")
-    return ""
+    # a@b.c>d#eA
+    if not isinstance(data, str):
+        raise TypeError("data must be a string")
+
+        # Convert key dict to JSON string
+    # key = json.dumps(key)
+
+    # for char in data:
+    #     for k in key:
+            # print(char)
+            # print(key[char])
+            # print(k)
+
+    return encoded
 
 
 # create a function that given the input string converts it to the decoded equivalent based on the provided or
 # already set key/hashmap make sure to only decode values that are in the key, if the value is not present,
 # use its own value
 def decode_string(data: str, key: str = None) -> str:
+    if not isinstance(data, str):
+        raise TypeError("data must be a string")
+
     print("")
     return ""
 
@@ -24,6 +41,9 @@ def decode_string(data: str, key: str = None) -> str:
 # function within python with a lambda to call the internal function with all elements as a return value, you should
 # return a list with Tuples containing the decoded value as first value and the encode value as second value
 def encode_list(data: list, key: str = None) -> list:
+    if not isinstance(data, list):
+        raise TypeError("data must be a list")
+
     print("")
     return []
 
@@ -33,6 +53,9 @@ def encode_list(data: list, key: str = None) -> list:
 # function within python with a lambda to call the internal function with all elements as a return value, you should
 # return a list with Tuples containing the decoded value as first value and the encode value as second value
 def decode_list(data: list, key: str = None) -> list:
+    if not isinstance(data, list):
+        raise TypeError("data must be a list")
+
     print("")
     return []
 
@@ -69,8 +92,9 @@ def set_dict_key(key: str) -> None:
             # Use all uneven values as values
             else:
                 dict[key_char] = key[i]
-        # Print dictionary key
-        print(dict)
+        # Update dictionary
+        dict_key_value.update(dict)
+
 
 # build menu structure as following
 # the input can be case-insensitive (so E and e are valid inputs)
@@ -80,7 +104,19 @@ def set_dict_key(key: str) -> None:
 # [V] Validate 2 values against eachother
 # [Q] Quit program
 def main():
-    set_dict_key("a@b.c>d#eA")
+    # Setup data and key dictionary
+    # a@b.c>d#eA
+    data = "abba"
+    set_dict_key(input("key?: "))
+
+    # Encoding
+    encode_str = encode_string(data, str(dict_key_value))
+
+    # Decoding
+
+    # Prints
+    # Prints @..@
+    print(f"Encoded String: {encode_str}")
 
 
 # Create a unittest for both the encode and decode function (see test_namehasher.py file for boilerplate)
