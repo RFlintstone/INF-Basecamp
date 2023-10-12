@@ -29,12 +29,11 @@ def encode_string(data: str, key: str = None) -> str:
         raise ValueError("Unable to convert key to JSON")
 
     # 'Encode' the data
-    encoded = []
     for d in data:
-        encoded.append(key.get(d))
+        encoded_values.append(key.get(d))
 
-    # Return the key for debug purposes
-    return ''.join(encoded)
+    # Return the encoded string
+    return ''.join(encoded_values)
 
 
 # create a function that given the input string converts it to the decoded equivalent based on the provided or
