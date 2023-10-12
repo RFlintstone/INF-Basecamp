@@ -10,19 +10,31 @@ decoded_values = []
 # use its own value
 def encode_string(data: str, key: str = None) -> str:
     # a@b.c>d#eA
+    # Check if data is a string
     if not isinstance(data, str):
         raise TypeError("data must be a string")
 
-        # Convert key dict to JSON string
-    # key = json.dumps(key)
+    # Check if key is a string
+    if not isinstance(key, str):
+        raise TypeError("key must be a string")
 
-    # for char in data:
-    #     for k in key:
-            # print(char)
-            # print(key[char])
-            # print(k)
+    # Replace single quotes with double quotes so the json can be parsed correctly
+    key = key.replace("'", '"')
 
-    return encoded
+    # Parse string as JSON directly
+    key = json.loads(key)
+
+    # Verify if the key was converted to dict
+    if not isinstance(key, dict):
+        raise ValueError("Unable to convert key to JSON")
+
+    # 'Encode' the data
+    encoded = []
+    for d in data:
+        encoded.append(key.get(d))
+
+    # Return the key for debug purposes
+    return ''.join(encoded)
 
 
 # create a function that given the input string converts it to the decoded equivalent based on the provided or
@@ -31,6 +43,9 @@ def encode_string(data: str, key: str = None) -> str:
 def decode_string(data: str, key: str = None) -> str:
     if not isinstance(data, str):
         raise TypeError("data must be a string")
+
+    if not isinstance(key, str):
+        raise TypeError("key must be a string")
 
     print("")
     return ""
@@ -44,6 +59,9 @@ def encode_list(data: list, key: str = None) -> list:
     if not isinstance(data, list):
         raise TypeError("data must be a list")
 
+    if not isinstance(key, str):
+        raise TypeError("key must be a string")
+
     print("")
     return []
 
@@ -53,8 +71,13 @@ def encode_list(data: list, key: str = None) -> list:
 # function within python with a lambda to call the internal function with all elements as a return value, you should
 # return a list with Tuples containing the decoded value as first value and the encode value as second value
 def decode_list(data: list, key: str = None) -> list:
+    # Check if data is a list
     if not isinstance(data, list):
         raise TypeError("data must be a list")
+
+    # Check if key is a string
+    if not isinstance(key, str):
+        raise TypeError("key must be a string")
 
     print("")
     return []
@@ -63,6 +86,18 @@ def decode_list(data: list, key: str = None) -> list:
 # create a function that given a encoded value, decoded value and a key (optional) checks if the values are correct
 # the return value should be a boolean value (True if values match, False if they don't match)
 def validate_values(encoded: str, decoded: str, key: str = None) -> bool:
+    # Check if encoded is a string
+    if not isinstance(encoded, str):
+        raise TypeError("encoded must be a string")
+
+    # Check if decoded is a string
+    if not isinstance(decoded, str):
+        raise TypeError("decoded must be a string")
+
+    # Check if key is a string
+    if not isinstance(key, str):
+        raise TypeError("key must be a string")
+
     print("")
     return True
 
@@ -72,6 +107,10 @@ def validate_values(encoded: str, decoded: str, key: str = None) -> bool:
 # you should validate if the given input is an even input, otherwise show the error: Invalid hashvalue input
 # example: a@b.c>d#eA will become: {'a': '@', 'b': '.', 'c': '>', 'd', '#', 'e': 'A'}
 def set_dict_key(key: str) -> None:
+    # Check if the key is a string
+    if not isinstance(key, str):
+        raise TypeError("key must be a string")
+
     # Define lambda function to check if value is even
     even = lambda x: x % 2 == 0
 
@@ -105,7 +144,6 @@ def set_dict_key(key: str) -> None:
 # [Q] Quit program
 def main():
     # Setup data and key dictionary
-    # a@b.c>d#eA
     data = "abba"
     set_dict_key(input("key?: "))
 
@@ -114,11 +152,10 @@ def main():
 
     # Decoding
 
-    # Prints
-    # Prints @..@
+    # Prints @..@ with key: a@b.c>d#eA
     print(f"Encoded String: {encode_str}")
 
 
-# Create a unittest for both the encode and decode function (see test_namehasher.py file for boilerplate)
+# Create an unittest for both the encode and decode function (see test_namehasher.py file for boilerplate)
 if __name__ == "__main__":
     main()
