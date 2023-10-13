@@ -29,8 +29,8 @@ def encode_string(data: str, key: str = None) -> str:
         raise ValueError("Unable to convert key to JSON")
 
     # 'Encode' the data
-    for d in data:
-        encoded_values.append(key.get(d))
+    for letter in data:
+        encoded_values.append(key.get(letter))
 
     # Return the encoded string
     return ''.join(encoded_values)
@@ -60,8 +60,8 @@ def decode_string(data: str, key: str = None) -> str:
         raise ValueError("Unable to convert key to JSON")
 
     # 'decode' the data
-    for d in data:
-        decoded_values.append(reverse_key.get(d))
+    for letter in data:
+        decoded_values.append(reverse_key.get(letter))
 
     # Return the encoded string
     return ''.join(decoded_values)
@@ -170,28 +170,25 @@ def set_dict_key(key: str) -> None:
     if not isinstance(key, str):
         raise TypeError("key must be a string")
 
-    # Define lambda function to check if value is even
-    even = lambda x: x % 2 == 0
-
     # Define necessary variables
     key_char = ""
-    dict = {}
+    key_dict = {}
 
     # Check if the provided key is uneven (not valid)
-    if not even(len(key)):
+    if not len(key) % 2 == 0:
         print("Invalid hashvalue input")
     else:
         # Fill the key dictionary
         for i, k in enumerate(key):
             # Use all even values as keys
-            if even(i):
+            if i % 2 == 0:
                 key_char = k
-                dict[key_char] = i
+                key_dict[key_char] = i
             # Use all uneven values as values
             else:
-                dict[key_char] = key[i]
+                key_dict[key_char] = key[i]
         # Update dictionary
-        dict_key_value.update(dict)
+        dict_key_value.update(key_dict)
 
 
 # build menu structure as following
@@ -226,27 +223,27 @@ def main():
             if action == "E":
                 # Encode
                 encoded_values.clear()
-                data = input("TO ENCODE: ")  # Needs to be an input
-                data = data.split(",")
-                if len(data) == 1:
-                    encode_str = encode_string(data[0], str(dict_key_value))
+                input_data = input("TO ENCODE: ")  # Needs to be an input
+                input_data = input_data.split(",")
+                if len(input_data) == 1:
+                    encode_str = encode_string(input_data[0], str(dict_key_value))
                 else:
-                    encode_str = encode_list(data, str(dict_key_value))
+                    encode_str = encode_list(input_data, str(dict_key_value))
                     encode_str = "".join(encode_str)
 
             elif action == "D":
                 # Decode
                 decoded_values.clear()
-                data = input("TO DECODE: ")  # Needs to be an input
-                data = data.split(",")
-                if len(data) == 1:
-                    decode_str = decode_string(data[0], str(dict_key_value))
+                input_data = input("TO DECODE: ")  # Needs to be an input
+                input_data = input_data.split(",")
+                if len(input_data) == 1:
+                    decode_str = decode_string(input_data[0], str(dict_key_value))
                 else:
-                    decode_str = decode_list(data, str(dict_key_value))
+                    decode_str = decode_list(input_data, str(dict_key_value))
                     decode_str = "".join(decode_str)
 
             elif action == "P":
-                # Prints @..@ with key: a@b.c>d#eA and data: abba
+                # Prints @..@ with key: a@b.c>d#eA and input_data: abba
                 print(f"Encoded String: {encode_str}")
                 print(f"Decoded String: {decode_str}")
 
@@ -260,4 +257,5 @@ def main():
 
 # Create an unittest for both the encode and decode function (see test_namehasher.py file for boilerplate)
 if __name__ == "__main__":
+    (lambda x: print(x))("=" * 70)
     main()
