@@ -52,6 +52,7 @@ def decode_string(data: str, key: str = None) -> str:
     # Parse string as JSON directly
     key = json.loads(key)
 
+    # Reverse JSON key/value
     reverse_key = {v: k for k, v in key.items()}
 
     # Verify if the key was converted to dict
@@ -77,8 +78,28 @@ def encode_list(data: list, key: str = None) -> list:
     if not isinstance(key, str):
         raise TypeError("key must be a string")
 
-    print("")
-    return []
+    # Replace single quotes with double quotes so the json can be parsed correctly
+    key = key.replace("'", '"')
+
+    # Parse string as JSON directly
+    key = json.loads(key)
+
+    # Verify if the key was converted to dict
+    if not isinstance(key, dict):
+        raise ValueError("Unable to convert key to JSON")
+
+    # 'Encode' the data
+    encoded = []
+    for word in data:
+        for letter in word:
+            if letter != " ":
+                encoded.append(key.get(letter))
+            else:
+                encoded.append("\n")
+
+    encoded_values.extend(encoded)
+
+    return encoded_values
 
 
 # create a function that given a list of inputs converts the complete list to the encoded equivalent based on the
@@ -94,11 +115,34 @@ def decode_list(data: list, key: str = None) -> list:
     if not isinstance(key, str):
         raise TypeError("key must be a string")
 
-    print("")
-    return []
+    # Replace single quotes with double quotes so the json can be parsed correctly
+    key = key.replace("'", '"')
+
+    # Parse string as JSON directly
+    key = json.loads(key)
+
+    # Reverse JSON key/value
+    reverse_key = {v: k for k, v in key.items()}
+
+    # Verify if the key was converted to dict
+    if not isinstance(reverse_key, dict):
+        raise ValueError("Unable to convert key to JSON")
+
+    # 'Encode' the data
+    decoded = []
+    for word in data:
+        for letter in word:
+            if letter != " ":
+                decoded.append(reverse_key.get(letter))
+            else:
+                decoded.append("\n")
+
+    decoded_values.extend(decoded)
+
+    return decoded_values
 
 
-# create a function that given a encoded value, decoded value and a key (optional) checks if the values are correct
+# create a function that given an encoded value, decoded value and a key (optional) checks if the values are correct
 # the return value should be a boolean value (True if values match, False if they don't match)
 def validate_values(encoded: str, decoded: str, key: str = None) -> bool:
     # Check if encoded is a string
@@ -114,7 +158,7 @@ def validate_values(encoded: str, decoded: str, key: str = None) -> bool:
         raise TypeError("key must be a string")
 
     print("")
-    return True
+    return False
 
 
 # give the option to input a hashvalue to be used/converted to a key
@@ -181,13 +225,25 @@ def main():
 
             if action == "E":
                 # Encode
+                encoded_values.clear()
                 data = input("TO ENCODE: ")  # Needs to be an input
-                encode_str = encode_string(data, str(dict_key_value))
+                data = data.split(",")
+                if len(data) == 1:
+                    encode_str = encode_string(data[0], str(dict_key_value))
+                else:
+                    encode_str = encode_list(data, str(dict_key_value))
+                    encode_str = "".join(encode_str)
 
             elif action == "D":
                 # Decode
+                decoded_values.clear()
                 data = input("TO DECODE: ")  # Needs to be an input
-                decode_str = decode_string(data, str(dict_key_value))
+                data = data.split(",")
+                if len(data) == 1:
+                    decode_str = decode_string(data[0], str(dict_key_value))
+                else:
+                    decode_str = decode_list(data, str(dict_key_value))
+                    decode_str = "".join(decode_str)
 
             elif action == "P":
                 # Prints @..@ with key: a@b.c>d#eA and data: abba
