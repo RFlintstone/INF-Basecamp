@@ -46,8 +46,24 @@ def decode_string(data: str, key: str = None) -> str:
     if not isinstance(key, str):
         raise TypeError("key must be a string")
 
-    print("")
-    return ""
+    # Replace single quotes with double quotes so the json can be parsed correctly
+    key = key.replace("'", '"')
+
+    # Parse string as JSON directly
+    key = json.loads(key)
+
+    reverse_key = {v: k for k, v in key.items()}
+
+    # Verify if the key was converted to dict
+    if not isinstance(reverse_key, dict):
+        raise ValueError("Unable to convert key to JSON")
+
+    # 'decode' the data
+    for d in data:
+        decoded_values.append(reverse_key.get(d))
+
+    # Return the encoded string
+    return ''.join(decoded_values)
 
 
 # create a function that given a list of inputs converts the complete list to the encoded equivalent based on the
@@ -142,17 +158,48 @@ def set_dict_key(key: str) -> None:
 # [V] Validate 2 values against eachother
 # [Q] Quit program
 def main():
-    # Setup data and key dictionary
-    data = "abba"
+    # Setup key dictionary
+    encode_str = ""
+    decode_str = ""
     set_dict_key(input("key?: "))
 
-    # Encoding
-    encode_str = encode_string(data, str(dict_key_value))
+    if len(dict_key_value) != 0:
+        menu_text = '''
+        [E] Encode value to hashed value
+        [D] Decode hashed value to normal value
+        [P] Print all encoded/decoded values
+        [V] Validate 2 values against eachother
+        [Q] Quit program
+        '''
+        menu_lines = menu_text.splitlines()
+        menu_stripped = [line.lstrip() for line in menu_lines]
+        menu_text = '\n'.join(menu_stripped)
+        print(menu_text)
 
-    # Decoding
+        while True:
+            action = input("Please input a command ").upper()
 
-    # Prints @..@ with key: a@b.c>d#eA
-    print(f"Encoded String: {encode_str}")
+            if action == "E":
+                # Encode
+                data = input("TO ENCODE: ")  # Needs to be an input
+                encode_str = encode_string(data, str(dict_key_value))
+
+            elif action == "D":
+                # Decode
+                data = input("TO DECODE: ")  # Needs to be an input
+                decode_str = decode_string(data, str(dict_key_value))
+
+            elif action == "P":
+                # Prints @..@ with key: a@b.c>d#eA and data: abba
+                print(f"Encoded String: {encode_str}")
+                print(f"Decoded String: {decode_str}")
+
+            elif action == "V":
+                # Validate 2 values against eachother
+                print("Validate 2 values against eachother")
+
+            elif action == "Q":
+                return
 
 
 # Create an unittest for both the encode and decode function (see test_namehasher.py file for boilerplate)
