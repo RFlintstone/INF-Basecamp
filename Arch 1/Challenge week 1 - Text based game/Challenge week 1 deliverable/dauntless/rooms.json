@@ -1,0 +1,158 @@
+{
+    "start": {
+        "inspect_description": "You see a wooden chest in the corner.",
+        "exits": {
+          "east": "hallway"
+        },
+        "interact": ["chest", "door","pincode"],
+        "items": {
+            "blue_key": "remove"
+        },
+        "npcs": ["Bob"]
+    },
+
+    "hallway": {
+        "inspect_description": "You don't see anything particular which you are interested in",
+        "exits": {
+          "west": "start",
+          "north": "dungeon"
+        },
+        "interact": ["vents"],
+        "items": [],
+        "npcs": []
+    },
+
+    "dungeon": {
+        "inspect_description": "This room is lit but it does look very dangerous. You better don't do anything stupid.",
+        "exits": {
+            "south": "hallway"
+        },
+        "interact": ["cell", "sharp_object"],
+        "items": [],
+        "npcs": []
+    },
+
+    "entrance": {
+        "exits": {
+            "south": "hallway_a"
+        },
+        "interact": ["door","corridor"],
+        "items": [],
+        "npcs": []
+    },
+
+    "boiler_room": {
+        "exits": {
+            "east": "hallway_a",
+            "south": "kitchen"
+        },
+        "interact": ["corner", "cabinet", "wires", "object", "toolkit"],
+        "items": ["empty_batteries"],
+        "npcs": []
+    },
+
+    "hallway_a": {
+        "exits": {
+            "north": "entrance",
+            "west": "boiler_room",
+            "east": "engine_room"
+        },
+        "interact": ["west_door", "east_door"],
+        "items": ["engine_key"],
+        "npcs": []
+    },
+    "kitchen": {
+        "exits": {
+            "south": "nav_room",
+            "north": "boiler_room",
+            "west": "storage",
+            "east": "crew_cabin"
+        },
+        "interact": ["countertops","fridge","stove","pot","noise","corpse"],
+        "items": ["gun", "mystery_meat"],
+        "npcs": []
+    },
+
+    "server_room": {
+        "exits": {
+            "east": "hallway_b",
+            "west": "captain_cabin"
+        },
+        "interact": ["lights","levers","screen","usb_ports","medkit"],
+        "items": ["usb_a", "usb_b", "usb_c", "usb_d", "keycard"],
+        "npcs": []
+    },
+
+    "bridge": {
+        "exits": {
+            "north": "hallway_c"
+        },
+        "interact": ["window","button","captain","doormat"],
+        "items": ["engine_key","gun"],
+        "npcs": []
+    },
+
+    "storage": {
+        "exits": {
+            "east": "kitchen"
+        },
+        "interact": ["tags","batteries","piss","glint", "window"],
+        "items": ["ladder"],
+        "npcs": []
+    },
+
+    "crew_cabin": {
+        "exits": {
+            "west": "kitchen",
+            "east": "hallway_b"
+        },
+        "interact": ["bob","bunk_beds","infection","lockbox","junk"],
+        "items": ["medkit"]
+    },
+
+    "engine_room": {
+        "exits": {
+            "west": "hallway_a"
+        },
+        "interact": ["motor", "switches", "switch_a","switch_b","switch_c","switch_d", "note", "usb"],
+        "items": []
+    },
+
+    "hallway_b": {
+        "exits": {
+            "west": "crew_cabin",
+            "south": "server_room"
+        },
+        "interact": ["west_door", "south_door", "window", "stairs", "body"],
+        "items": []
+    },
+
+    "nav_room": {
+        "exits": {
+            "north": "kitchen",
+            "east": "hallway_c"
+        },
+        "interact": ["localized_map"],
+        "items": []
+    },
+
+    "hallway_c": {
+        "exits": {
+            "west": "nav_room",
+            "east": "captain_cabin",
+            "south": "bridge"
+        },
+        "interact": ["east_door", "south_door", "west_door"],
+        "items": ["keycard"]
+    },
+
+    "captain_cabin": {
+        "exits": {
+            "west": "hallway_c",
+            "east": "server_room"
+        },
+        "interact": ["safe","desk","numpad","documents","note"],
+        "items": ["charged_batteries"]
+    }
+
+}
