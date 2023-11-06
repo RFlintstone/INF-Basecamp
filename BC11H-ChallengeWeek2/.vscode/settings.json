@@ -1,0 +1,12 @@
+{
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.codeLens.symbolScopes": ["!Module"],
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": false,
+    "editor.insertSpaces": true,
+    "editor.indentSize": 4,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
+}
