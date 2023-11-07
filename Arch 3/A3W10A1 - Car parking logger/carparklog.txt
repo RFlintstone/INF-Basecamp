@@ -1,0 +1,10 @@
+07-11-2023 21:36:53;cpm_name=1;license_plate=r;action=check-in
+07-11-2023 21:36:59;cpm_name=1;license_plate=u;action=check-in
+07-11-2023 21:37:02;cpm_name=1;license_plate=b;action=check-in
+07-11-2023 21:37:05;cpm_name=1;license_plate=e;action=check-in
+07-11-2023 21:37:07;cpm_name=1;license_plate=n;action=check-in
+07-11-2023 21:37:16;cpm_name=1;license_plate=r;action=check-out;parking_fee=2.50
+07-11-2023 21:37:23;cpm_name=1;license_plate=u;action=check-out;parking_fee=2.50
+07-11-2023 21:37:26;cpm_name=1;license_plate=b;action=check-out;parking_fee=2.50
+07-11-2023 21:37:33;cpm_name=1;license_plate=e;action=check-out;parking_fee=2.50
+07-11-2023 21:37:36;cpm_name=1;license_plate=n;action=check-out;parking_fee=2.50
