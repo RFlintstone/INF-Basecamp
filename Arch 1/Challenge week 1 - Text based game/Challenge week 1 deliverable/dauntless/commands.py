@@ -2,7 +2,7 @@ import os
 import json
 import dialog_trigger as dialog
 
-# Get the directory where main.py is located
+# Get the directory where carparking.py is located
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Construct the absolute path to rooms.json
