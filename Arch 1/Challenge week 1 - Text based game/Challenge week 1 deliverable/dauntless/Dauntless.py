@@ -22,7 +22,7 @@ import commands as cmd
 def setup_room(my_room_name):
     global current_room
 
-    # Get the directory where main.py is located
+    # Get the directory where carparking.py is located
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Construct the absolute path to rooms.json
