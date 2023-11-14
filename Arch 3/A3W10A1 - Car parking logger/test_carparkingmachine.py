@@ -38,10 +38,10 @@ def test_parking_fee():
     fee2 = cpm3.check_out("c2")
 
     # Assert that parking time 2h10m, gives correct parking fee
-    assert fee1 is True
+    assert fee1 is not False
 
     # Assert that parking time 24h, gives correct parking fee
-    assert fee2 is True
+    assert fee2 is not False
 
     # Prepare two subtraction variables, one with 30h and one with 24h
     sub1 = datetime.now() - timedelta(hours=30)
@@ -58,9 +58,14 @@ def test_parking_fee():
     # Assert that parking time 30h == 24h max, gives correct parking fee
     assert one == two
 
-    # now = datetime.now()
-    # cpm_south = CarParkingMachine(id='CodeGradeTestSouth')
-    # cpm_south.check_in(license_plate='AAA', check_in=now - timedelta(hours=2, minutes=10))
+    now = datetime.now()
+
+    cpm_south = CarParkingMachine(id='CodeGradeTestSouth')
+    cpm_south.check_in(license_plate='AAA', check_in=now - timedelta(hours=2, minutes=10))
+    cpm_south.check_in(license_plate='BBB', check_in=now - timedelta(hours=24))
+    cpm_south.check_in(license_plate='CCC', check_in=now - timedelta(hours=30))
+
+    assert 7.5 == cpm_south.check_out(license_plate='AAA')  # parking time 2h10m
 
 
 # Test for validating check-out behaviour
@@ -79,13 +84,12 @@ def test_check_out():
     # Assert DDD is in parked_cars
     assert "DDD" in cpm4.parked_cars
 
-    # Check out DDD
-    fee = cpm4.check_out("DDD")
-
     # Assert fee is correct
-    assert fee == (cpm4.hourly_rate * 1)
+    fee = cpm4.get_parking_fee("DDD")
+    assert fee == (cpm4.hourly_rate * 2)
 
     # Assert DDD is no longer in parked_cars
+    cpm4.check_out("DDD")
     assert "DDD" not in cpm4.parked_cars
 
 
@@ -94,3 +98,4 @@ if __name__ == "__main__":
     test_check_in_capacity_reached()
     test_parking_fee()
     test_check_out()
+

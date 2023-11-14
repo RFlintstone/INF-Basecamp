@@ -19,6 +19,47 @@ class CarParkingLogger:
         self.id = id
         self.log_file = log_file
 
+    def get_total_car_fee(self, license_plate: str):
+        # open the log file in read mode
+        log_file = open(self.log_file, "r")
+
+        # read the file line by line and calculate the total fee for the given license plate
+        total_fee = 0
+        for line in log_file:
+            if license_plate in line:
+                line_parts = line.split(";")
+                for part in line_parts:
+                    if "parking_fee=" in part:
+                        fee = float(part.split("=")[1])
+                        total_fee += fee
+
+        # close the file and return the total fee
+        log_file.close()
+        rounded_total_car_fee = round(total_fee, 2)
+        return rounded_total_car_fee
+
+    def get_machine_fee_by_day(self, cpm_name: str, date: str):
+        # replace spaces with underscores
+        cpm_name = cpm_name.replace(" ", "_")
+
+        # open the log file in read mode
+        log_file = open(self.log_file, "r")
+
+        # read the file line by line and calculate the total fee for the given day and machine
+        total_fee = 0
+        for line in log_file:
+            if f"cpm_name={cpm_name}" in line and date in line:
+                line_parts = line.split(";")
+                for part in line_parts:
+                    if "parking_fee=" in part:
+                        fee = float(part.split("=")[1])
+                        total_fee += fee
+
+        # close the file and return the total fee
+        log_file.close()
+        rounded_total_car_fee = round(total_fee, 2)
+        return rounded_total_car_fee
+
     def add_check_in(self, cpm_name: str, license_plate: str, action: str):
         # get the current date and time
         now = datetime.now()
@@ -74,6 +115,9 @@ class CarParkingLogger:
         # Print the content
         print(file_content)
 
+        # Return the content
+        return file_content
+
     def write_to_log_file(self, new_line: str):
         # open the log file
         log_file = self.open_log_file()
@@ -118,8 +162,9 @@ class CarParkingMachine:
             return False
 
         # add the car to the parked_cars dict
-        car = ParkedCar(license_plate, check_in)
+        car = ParkedCar(license_plate, check_in.replace(microsecond=0))
         self.parked_cars[license_plate] = car
+        self.logger.add_check_in(self.id, license_plate, "check-in")
 
         # print that the car is parked
         print(f"License registered - {license_plate} checked in at {check_in}")
@@ -141,11 +186,12 @@ class CarParkingMachine:
         # print(f"{license_plate} parking fee: {fee} EUR")
         print(fee)
         print(f"Parking fee: {fee:.2f} EUR")
+        self.logger.add_check_out(self.id, license_plate, "check-out", fee)
 
         # remove the car from the parked_cars dict
         del self.parked_cars[license_plate]
 
-        return True
+        return fee
 
     # receives the license_plate as str and calculates/returns the parking fee
     def get_parking_fee(self, license_plate: str):
@@ -194,18 +240,13 @@ def main():
         if choice == "I":
             license_plate = input("Enter license plate: ") if not DEBUG_MODE else "AA-123-B"
             print(f"Checking in {license_plate}...")
-            check = cpm.check_in(license_plate=license_plate, time=datetime.now())
-            if check:
-                cpm.logger.add_check_in(cpm.id, license_plate, "check-in")
+            cpm.check_in(license_plate)
 
         # check if the user wants to check out
         elif choice == "O":
             license_plate = input("Enter license plate: ") if not DEBUG_MODE else "AA-123-B"
             print(f"Checking out {license_plate}...")
-            fee = cpm.get_parking_fee(license_plate)
-            check = cpm.check_out(license_plate=license_plate)
-            if check:
-                cpm.logger.add_check_out(cpm.id, license_plate, "check-out", fee)
+            cpm.check_out(license_plate)
 
         # check if the user wants to quit the program
         elif choice == "Q":

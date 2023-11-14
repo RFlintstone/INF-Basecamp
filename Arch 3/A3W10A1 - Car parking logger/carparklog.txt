@@ -1,4 +1,0 @@
-07-11-2023 21:49:49;cpm_name=North;license_plate=h;action=check-in
-07-11-2023 21:49:54;cpm_name=North;license_plate=i;action=check-in
-07-11-2023 21:49:57;cpm_name=North;license_plate=h;action=check-out;parking_fee=2.50
-07-11-2023 21:50:00;cpm_name=North;license_plate=i;action=check-out;parking_fee=2.50
