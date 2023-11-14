@@ -98,11 +98,11 @@ class CarParkingMachine:
         self.parked_cars = parked_cars
         self.logger = CarParkingLogger(id)
 
-    # receives the license_plate as str, the time as datetime object that the car is parked.
-    def check_in(self, license_plate: str, time=None):
+    # receives the license_plate as str, the check_in/time as datetime object that the car is parked.
+    def check_in(self, license_plate: str, check_in=None):
         # check if the time is None and set it to datetime.now() if it is
-        if time is None:
-            time = datetime.now()
+        if check_in is None:
+            check_in = datetime.now()
 
         # check if the garage is full
         if len(self.parked_cars) is self.capacity:
@@ -115,14 +115,14 @@ class CarParkingMachine:
         if license_plate in self.parked_cars:
             # print that the car is already parked
             print(f"{license_plate} is already checked in")
-            return
+            return False
 
         # add the car to the parked_cars dict
-        car = ParkedCar(license_plate, time)
+        car = ParkedCar(license_plate, check_in)
         self.parked_cars[license_plate] = car
 
         # print that the car is parked
-        print(f"License registered - {license_plate} checked in at {time}")
+        print(f"License registered - {license_plate} checked in at {check_in}")
 
         return True
 
