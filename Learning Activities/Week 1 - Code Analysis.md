@@ -1,4 +1,4 @@
-## Code Analysis
+## Code Analysis - Week 1
 
 1) Analyze the programming solutions given below and write down in one sentence: what do they do? What problems do they try to solve?
 
