@@ -41,7 +41,7 @@ with the same core concepts (so ignoring stuff like a story). So a 'Space Quest 
 
 Some of the screenshots we shared early in the evening were:
 
-Super Mario Bros like game:
+His Super Mario Bros like game:
 ![supermariobrosduochallenge1.png](img/supermariobrosduochallenge1.png)
 
 My game, a Space Quest like game:
