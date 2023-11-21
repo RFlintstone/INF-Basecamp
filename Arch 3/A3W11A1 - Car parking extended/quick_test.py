@@ -1,9 +1,11 @@
 import os
 import carparking as cp
 
+# Delete North.json if it exists
 if os.path.exists("North.json"):
     os.remove("North.json")
 
+# Delete carparklog.txt if it exists
 if os.path.exists("carparklog.txt"):
     os.remove("carparklog.txt")
 

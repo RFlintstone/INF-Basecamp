@@ -26,6 +26,7 @@ class CarParkingLogger:
         self.id = id
         self.log_file = log_file
 
+    # returns the total fee for the given license plate
     def get_total_car_fee(self, license_plate: str):
         # open the log file in read mode
         log_file = open(self.log_file, "r")
@@ -40,11 +41,14 @@ class CarParkingLogger:
                         fee = float(part.split("=")[1])
                         total_fee += fee
 
-        # close the file and return the total fee
+        # close the file
         log_file.close()
+
+        # round the total fee to 2 decimals and return it
         rounded_total_car_fee = round(total_fee, 2)
         return rounded_total_car_fee
 
+    # returns the total fee for the given day and machine
     def get_machine_fee_by_day(self, cpm_name: str, date: str):
         # replace spaces with underscores
         cpm_name = cpm_name.replace(" ", "_")
@@ -62,18 +66,21 @@ class CarParkingLogger:
                         fee = float(part.split("=")[1])
                         total_fee += fee
 
-        # close the file and return the total fee
+        # close the file
         log_file.close()
+
+        # round the total fee to 2 decimals and return it
         rounded_total_car_fee = round(total_fee, 2)
         return rounded_total_car_fee
 
+    # add a check-in to the log file
     def add_check_in(self, cpm_name: str, license_plate: str, action: str):
-        # get the current date and time
+        # get the current date and time and format them
         now = datetime.now()
         date = now.strftime("%d-%m-%Y")
         time = now.strftime("%H:%M:%S")
 
-        # replace spaces with underscores
+        # replace spaces with underscores, just in case
         cpm_name = cpm_name.replace(" ", "_")
         license_plate = license_plate.replace(" ", "_")
         action = action.replace(" ", "_")
@@ -81,17 +88,22 @@ class CarParkingLogger:
         # write the line to the log file
         write = self.write_to_log_file(f"{date} {time};cpm_name={cpm_name};license_plate={license_plate};"
                                        f"action={action}\n")
+
+        # check if the write was successful and read the log file
         if write:
             self.read_log_file()
+
+        # return the cpm_name which we could use to check if the check-in was successful
         return cpm_name
 
+    # add a check-out to the log file
     def add_check_out(self, cpm_name: str, license_plate: str, action: str, parking_fee: float):
-        # get the current date and time
+        # get the current date and time and format them
         now = datetime.now()
         date = now.strftime("%d-%m-%Y")
         time = now.strftime("%H:%M:%S")
 
-        # replace spaces with underscores
+        # replace spaces with underscores, just in case
         cpm_name = cpm_name.replace(" ", "_")
         license_plate = license_plate.replace(" ", "_")
         action = action.replace(" ", "_")
@@ -99,10 +111,15 @@ class CarParkingLogger:
         # write the line to the log file
         write = self.write_to_log_file(f"{date} {time};cpm_name={cpm_name};license_plate={license_plate};"
                                        f"action={action};parking_fee={parking_fee:.2f}\n")
+
+        # check if the write was successful and read the log file
         if write:
             self.read_log_file()
+
+        # return the cpm_name which we could use to check if the check-out was successful
         return cpm_name
 
+    # open the log file and return the file
     def open_log_file(self):
         # check if the log file exists, if not create it
         if not os.path.exists(self.log_file):
@@ -111,11 +128,12 @@ class CarParkingLogger:
         # open the log file
         log_file = open(self.log_file, "a")
 
-        # return the file
+        # return the file, so we can use it to write to it
         return log_file
 
+    # read the log file and return the content
     def read_log_file(self):
-        # Open file to read
+        # Open the log file and read the content
         with open(self.log_file) as f:
             file_content = f.read()
 
@@ -125,6 +143,7 @@ class CarParkingLogger:
         # Return the content
         return file_content
 
+    # write a new line to the log file
     def write_to_log_file(self, new_line: str):
         # open the log file
         log_file = self.open_log_file()
@@ -137,12 +156,14 @@ class CarParkingLogger:
         log_file.truncate()
         log_file.close()
 
+        # return True to indicate that writing was successful
         return True
 
 
 # CarParkingMachine class to store information of the car parking machine.
 class CarParkingMachine:
     def __init__(self, id: chr, capacity: int = 10, hourly_rate: float = 2.50, parked_cars=None):
+        # check if parked_cars is None and set it to an empty dict if it is
         if parked_cars is None:
             parked_cars = {}
 
@@ -172,58 +193,76 @@ class CarParkingMachine:
             print(f"{license_plate} is already checked in")
             return False
 
-        # add the car to the parked_cars dict
+        # create a ParkedCar object with the license_plate and check_in time
         car = ParkedCar(license_plate, check_in.replace(microsecond=0))
+
+        # add the car to the parked_cars dict
         self.parked_cars[license_plate] = car
+
+        # add the car to the parked_cars_stored list
         self.parked_cars_stored.append(car)
+
+        # update the json file based on the current parked_cars dict
         self.json_save("check-in")
+
+        # log the check-in
         self.logger.add_check_in(self.id, license_plate, "check-in")
 
         # print that the car is parked
         print(f"License registered - {license_plate} checked in at {check_in}")
 
+        # check-in was successful, return True
         return True
 
     # receives the license_plate as str and returns the owed parking fee total
     def check_out(self, license_plate: str):
+        # variable to check if the car is checked in
         is_checked_in = False
 
+        # check if the car is checked in
         if license_plate in self.parked_cars:
             is_checked_in = True
-            # current_car = self.parked_cars[license_plate]
 
+        # if the car is not checked in, print that the car is not checked in and return False
         if not is_checked_in:
             print(f"{license_plate} is not checked in")
             return False
 
+        # if the car is checked in, remove the car from the parked_cars dict and return the parking fee
         if is_checked_in:
             # get the parking fee
             fee = self.get_parking_fee(license_plate)
 
             # print the fee
-            # print(f"{license_plate} parking fee: {fee} EUR")
             print(fee)
             print(f"Parking fee: {fee:.2f} EUR")
+
+            # log the check-out
             self.logger.add_check_out(self.id, license_plate, "check-out", fee)
+
+            # update the json file based on the current parked_cars dict
             self.json_save("check-out")
 
             # remove the car from the parked_cars dict
             del self.parked_cars[license_plate]
 
+            # return the fee - this is calculated in the get_parking_fee method
             return fee
 
     # receives the license_plate as str and calculates/returns the parking fee
     def get_parking_fee(self, license_plate: str):
-        # hourly_rate * whole parking hours rounded up, with max of 24 hours
+        # check if the car is checked in, if not return 0
         if license_plate not in self.parked_cars:
             return 0
 
-        # get the check in time
+        # get the car from the parked_cars dict
         car = self.parked_cars[license_plate]
+
+        # get the check-in time and calculate the duration from the check-in time to now
         check_in_time = car.check_in
         duration = datetime.now() - check_in_time
 
-        # get the hours parked
+        # calculate the hours parked and round up to the next hour
         hours_parked = math.ceil(duration.total_seconds() / 3600)
         # hours_parked = math.ceil(duration.total_seconds())
         hours_parked = min(hours_parked, 24)
@@ -231,21 +270,28 @@ class CarParkingMachine:
         # return the fee - this should max out at $60
         return hours_parked * self.hourly_rate
 
+    # save the parked_cars dict to a json file
     def json_save(self, action):
+        # variable to store the existing json data
         existing = None
 
+        # check if the json file exists and if it does, check if it has content and then load the data if any
         if os.path.exists(self.json_file):
             if os.path.getsize(self.json_file) > 0:
                 with open(self.json_file) as f:
                     existing = json.load(f)
 
+        # create a list to store the new data if existing is None
         if not existing:
             existing = []
 
+        # create a list of the current parked_cars dict
         new_data = [car.to_json(action) for car in self.parked_cars.values()]
 
+        # combine the existing and new data
         combined = existing + new_data
 
+        # write the combined data to the json file
         with open(self.json_file, "w") as f:
             json.dump(combined, f)
 
@@ -256,10 +302,10 @@ class CarParkingMachine:
 # [O] Check-out car by license plate
 # [Q] Quit program
 def main():
-    # capacity: int, hourly_rate: float, parked_cars: dict
+    # create a CarParkingMachine object with id: str, capacity: int, hourly_rate: float, parked_cars: dict
     cpm = CarParkingMachine("North", 10, 2.50, None)
 
-    # remove the json file if it exists, just to be sure
+    # check if the json file exists and if it does remove it, so we can start fresh
     if os.path.exists(cpm.json_file):
         os.remove(cpm.json_file)
 
