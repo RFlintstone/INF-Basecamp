@@ -1,0 +1,2 @@
+21-11-2023 17:28:55;cpm_name=North;license_plate=BB-494-H;action=check-in
+21-11-2023 17:28:55;cpm_name=North;license_plate=HH-494-B;action=check-in
