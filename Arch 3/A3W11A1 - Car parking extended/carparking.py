@@ -13,8 +13,10 @@ class ParkedCar:
 
     def to_json(self, action):
         return {
-            "license_plate": self.license_plate,
-            action: self.check_in.strftime("%m-%d-%Y %H:%M:%S")
+            self.license_plate: {
+                "license_plate": self.license_plate,
+                action: self.check_in.strftime("%m-%d-%Y %H:%M:%S")
+            }
         }
 
 
@@ -173,7 +175,7 @@ class CarParkingMachine:
         self.parked_cars = parked_cars
         self.parked_cars_stored = []
         self.logger = CarParkingLogger(id)
-        self.json_file = f"{id}.json"
+        self.json_file = f"{id}_state.json"
 
     # receives the license_plate as str, the check_in/time as datetime object that the car is parked.
     def check_in(self, license_plate: str, check_in=None):
@@ -291,6 +293,7 @@ class CarParkingMachine:
         # combine the existing and new data
         combined = existing + new_data
 
+        print(new_data)
         # write the combined data to the json file
         with open(self.json_file, "w") as f:
             json.dump(combined, f)
