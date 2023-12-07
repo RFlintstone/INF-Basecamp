@@ -1,0 +1,7 @@
+07-12-2023 14:00:42;cpm_name=A;license_plate=AAA;action=check-in
+07-12-2023 14:00:42;cpm_name=C;license_plate=X;action=check-in
+07-12-2023 14:00:42;cpm_name=C;license_plate=Y;action=check-in
+07-12-2023 14:00:42;cpm_name=D;license_plate=AAA;action=check-in
+07-12-2023 14:00:42;cpm_name=D;license_plate=AAA;action=check-out;parking_fee=2.50
+07-12-2023 14:01:18;cpm_name=North;license_plate=123;action=check-in
+07-12-2023 14:01:41;cpm_name=North;license_plate=123;action=check-out;parking_fee=2.50
