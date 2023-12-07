@@ -1,7 +1,10 @@
 import os
 import math
 import json
-from datetime import datetime
+import sys
+import sqlite3
+from sqlite3 import Error
+from datetime import datetime, timedelta
 
 
 class ParkedCar:
@@ -25,10 +28,13 @@ class ParkedCar:
         :type check_in: datetime.datetime
         """
 
+        self.id = None
+        self.parking_fee = None
+        self.check_out = None
         self.license_plate = license_plate  # license plate of the car
         self.check_in = check_in  # time the car is parked
 
-    def to_json(self, action: str) -> dict:
+    def to_json(self) -> dict:
         """
         Converts the ParkedCar object to a JSON format.
         :param action: The action associated with the ParkedCar object (e.g., "check_in", "check_out").
@@ -36,10 +42,9 @@ class ParkedCar:
         """
 
         return {
-            self.license_plate: {
-                "license_plate": self.license_plate,
-                action: self.check_in.strftime("%m-%d-%Y %H:%M:%S")
-            }
+            'license_plate': self.license_plate,
+            'check-in': self.check_in.strftime("%m-%d-%Y %H:%M:%S") if self.check_in else None,
+            'check-out': self.check_out.strftime("%m-%d-%Y %H:%M:%S") if self.check_out else None,
         }
 
 
@@ -83,6 +88,7 @@ class CarParkingLogger:
     log_file: str
         The name of the log file.
     """
+
     def __init__(self, id: str, log_file: str = "carparklog.txt"):
         """
         Initialize a new instance of the CarParkingLogger class.
@@ -326,8 +332,171 @@ class CarParkingMachine:
         self.parked_cars_stored = []
         self.logger = CarParkingLogger(id)
         self.json_file = f"{id}_state.json"
+        self.db_conn = sqlite3.connect(os.path.join(sys.path[0], 'carparkingmachine.db'))
+        self.db_conn.execute('''DROP TABLE IF EXISTS parkings;''')
+        self.db_conn.execute(
+            '''CREATE TABLE IF NOT EXISTS parkings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                car_parking_machine TEXT NOT NULL,
+                license_plate TEXT NOT NULL,
+                check_in TEXT NOT NULL,
+                check_out TEXT DEFAULT NULL,
+                parking_fee NUMERIC DEFAULT 0 
+            );'''
+        )
+        self.check_table_exists(self.db_conn, "parkings")
+
+    def check_table_exists(self, db_conn, table_name):
+        """
+        Check if a table exists in the specified database.
+
+        :param db_conn:
+        :param table_name:
+        :return: none
+        """
+        cursor = db_conn.cursor()
+        cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';")
+
+        result = cursor.fetchone()
+        if result:
+            print(f"Table '{table_name}' exists.")
+        else:
+            print(f"Table '{table_name}' does not exist.")
+        cursor.close()
+
+    # This method will search for a parked_car in the database based on the row ID and return a ParkedCar object with
+    # the data
+    def find_by_id(self, id) -> ParkedCar:
+        # Create a cursor and prepare the SQL statement
+        cursor = self.db_conn.cursor()
+        sql = '''
+            SELECT * FROM parkings
+            WHERE id = ?
+            LIMIT 1;
+            '''
+
+        # Execute the SQL statement, fetch the row and close the cursor
+        cursor.execute(sql, (id,))
+        row = cursor.fetchone()
+        cursor.close()
+
+        # Set the license_plate and check_in variables from the row
+        lp = list(row)[2]
+        check_in_str = list(row)[3]
+
+        # Correctly format the check_in string to a datetime object
+        check_in = datetime.strptime(check_in_str, "%m-%d-%Y %H:%M:%S")
+
+        # Return a ParkedCar object with the license_plate and check_in
+        if row:
+            return ParkedCar(lp, check_in)
+        else:
+            return None
+
+    # This method will search for the last row for a given license_plate that has NOT checked-out yet (return row ID
+    # if found)
+    def find_last_checkin(self, license_plate) -> int:
+        # Create a cursor and prepare the SQL statement
+        cursor = self.db_conn.cursor()
+        sql = '''
+              SELECT id FROM parkings
+              WHERE license_plate = ? AND check_out IS NULL
+              ORDER BY id DESC
+              LIMIT 1;
+              '''
+
+        # Execute the SQL statement, fetch the row and close the cursor
+        cursor.execute(sql, (license_plate,))
+        row = cursor.fetchone()
+        cursor.close()
+
+        # Return the row ID if found, otherwise return None
+        if row is None:
+            return None
+        else:
+            return row[0]
+
+    # This method will insert details of a created ParkedCar object and put the new row ID (from database) on the
+    # object, return the object with this new row ID
+    def insert(self, parked_car: ParkedCar) -> ParkedCar:
+        # Get the full car details in JSON format and extract the license_plate and check_in
+        full_car = parked_car.to_json()
+
+        # Create a list of the values from the JSON data
+        values = []
+        for key, value in full_car.items():
+            if value is not None:
+                values.append(value)
+                print(f"{key}: {value}")
+
+        # Prepare the SQL statement and execute it with the values from the list we just created
+        sql = '''INSERT INTO parkings (car_parking_machine, license_plate, check_in) VALUES (?, ?, ?)'''
+        cursor = self.db_conn.cursor()
+        cursor.execute(
+            sql, (self.id, values[0], values[1])
+        )
+
+        parked_car.id = cursor.lastrowid
+
+        # Fetch all rows
+        self.fetch_data()
+
+    # This method will update details of a ParkedCar object inside the database (update based on ParkedCar.id <-
+    # Database Row ID)
+    def update(self, parked_car: ParkedCar) -> None:
+        # Depending on your ParkedCar object implementation, generate the values to update
+        car_parking_machine = self.id
+        license_plate = parked_car.license_plate
+        check_in = parked_car.check_in.strftime("%m-%d-%Y %H:%M:%S")
+        check_out = parked_car.check_out.strftime("%m-%d-%Y %H:%M:%S") if parked_car.check_out else None
+        parking_fee = parked_car.parking_fee
+        id = parked_car.id
+
+        print("ASDASD", parked_car.to_json().get("license_plate"))
+        print("ASDASDASD", id)
+        # Prepare the SQL UPDATE query
+        sql = '''
+            UPDATE parkings
+            SET car_parking_machine = ?, license_plate = ?, check_in = ?, check_out = ?, parking_fee = ?
+            WHERE id = ?
+            '''
+
+        # Execute the UPDATE query with the new values
+        self.db_conn.execute(sql, (car_parking_machine, license_plate, check_in, check_out, parking_fee, id))
+
+        # Commit the transaction
+        self.db_conn.commit()
+
+        # Fetch all rows
+        self.fetch_data()
+
+    def fetch_data(self):
+        cursor = self.db_conn.cursor()
+        cursor.execute("SELECT * FROM parkings")
+
+        # Fetch column names and print them spaced by ' | '
+        names = [description[0] for description in cursor.description]
+        header = ' | '.join(f"{name:<20}" for name in names)
+
+        print("\n")
+
+        # Print the column names
+        print(header)
+
+        # Print a dashed line of the same width as the header
+        print('-' * len(header))
+
+        # Fetch and print all rows
+        rows = cursor.fetchall()
+        for row in rows:
+            print(' | '.join(f"{str(r) if r is not None else 'None':<20}" for r in row))  # Format items and concatenate
+
+        print("\n")
+        cursor.close()
 
     def check_in(self, license_plate: str, check_in=None):
+        pass
+
         """
         :param license_plate: The license plate of the car being checked in.
         :param check_in: The time of check-in. If not provided, it defaults to the current time.
@@ -351,6 +520,8 @@ class CarParkingMachine:
 
         # create a ParkedCar object with the license_plate and check_in time
         car = ParkedCar(license_plate, check_in.replace(microsecond=0))
+        # insert the car into the database
+        self.insert(car)
 
         # add the car to the parked_cars dict
         self.parked_cars[license_plate] = car
@@ -400,6 +571,11 @@ class CarParkingMachine:
 
             # log the check-out
             self.logger.add_check_out(self.id, license_plate, "check-out", fee)
+
+            # Update the database with the check-out time and parking fee
+            self.parked_cars[license_plate].check_out = datetime.now()
+            self.parked_cars[license_plate].parking_fee = fee
+            self.update(self.parked_cars[license_plate])
 
             # update the json file based on the current parked_cars dict
             self.json_save("check-out")
@@ -453,7 +629,7 @@ class CarParkingMachine:
             existing = []
 
         # create a list of the current parked_cars dict
-        new_data = [car.to_json(action) for car in self.parked_cars.values()]
+        new_data = [car.to_json() for car in self.parked_cars.values()]
 
         # combine the existing and new data
         combined = existing + new_data
