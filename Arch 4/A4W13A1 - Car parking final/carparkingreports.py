@@ -267,6 +267,7 @@ def main():
         print(
             "[P] Report all parked cars during a parking period for a specific parking machine\n"
             "[F] Report total collected parking fee during a parking period for all parking machines\n"
+            "[C] Report all complete parkings over all parking machines for a specific car\n"
             "[Q] Quit program"
         )
 
