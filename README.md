@@ -55,9 +55,9 @@
 - [x] Peer evaluation – week 7
   - [x] Checked Files
   - [x] Added to Deliverable
-- [ ] Peer-evaluation – week 12
-  - [ ] Checked Files
-  - [ ] Added to Deliverable
+- [x] Peer-evaluation – week 12
+  - [x] Checked Files
+  - [x] Added to Deliverable
   
 ### Need to do with SLC:
 - [x] Feedback session: report week 4/5
