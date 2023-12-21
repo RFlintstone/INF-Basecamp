@@ -47,9 +47,9 @@
   - [x] Added to Deliverable
 
 ### Make sure to ask specifics on these:
-- [ ] Weekly Activity which shows evidence of progress
-  - [ ] Checked Files
-  - [ ] Added to Deliverable
+- [x] Weekly Activity which shows evidence of progress
+  - [x] Checked Files
+  - [x] Added to Deliverable (in Basecamp Dossier)
 
 ### Need to do this with another student:
 - [x] Peer evaluation – week 7
