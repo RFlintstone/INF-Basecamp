@@ -13,5 +13,17 @@ With the car parking assessment I created a 'quick-test.py' file so I could easi
 
 ## Code Snippet
 ```python
+def write_to_log_file(self, new_line: str):
+    # open the log file
+    log_file = self.open_log_file()
 
+    # use seek to start writing at the beginning of the file and write the new line
+    log_file.seek(0)
+    log_file.write(new_line)
+
+    # truncate the file to the current position and close the file
+    log_file.truncate()
+    log_file.close()
+
+    return True
 ```

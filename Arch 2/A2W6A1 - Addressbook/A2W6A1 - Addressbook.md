@@ -14,7 +14,22 @@ learn anything new in the assignment/problem.
 
 ## Code Snippet
 ```python
-# Merge emails and phone numbers
-merged_contact['emails'].extend(contact['emails'])
-merged_contact['phone_numbers'].extend(contact['phone_numbers'])
+def list_contacts(json, direction):
+    # Check if we want to reverse the list (the same as ascending/descending)
+    reversed = (direction.upper() == "DESC")
+
+    # Sort the contacts based on the boolean
+    sorted_contacts = sorted(json, key=lambda x: x['id'], reverse=reversed)
+
+    # Make a list so we can fill the addressbook
+    addressbook = []
+
+    # Loop through the sorted contacts
+    for i, contact in enumerate(sorted_contacts):
+        # Store our new entry in an empty list
+        entry = [str(i + 1), contact['first_name'], contact['last_name'], contact['emails'], contact['phone_numbers']]
+        addressbook.append(entry)  # Add the entry to the addressbook, which is now sorted
+
+    # Return the sorted list
+    return addressbook
 ```
