@@ -21,3 +21,17 @@ class Skater:
 
     def get_events(self) -> list:
         return self.__repr__()
+
+    def print_all_attributes_but_fancy(self, task_name: str = "") -> None:
+        name = type(self).__name__
+        if task_name is not None and task_name != "":
+            name = f"{type(self).__name__} - {task_name}"
+
+        print(name.center(34, '='))
+
+        if len(self.__dict__.keys()) > 0:
+            max_length = max(len(key) for key in self.__dict__)  # Find the maximum length of keys
+            for key, value in self.__dict__.items():
+                print(key.ljust(max_length), "->", value)
+        else:
+            print("No attributes")

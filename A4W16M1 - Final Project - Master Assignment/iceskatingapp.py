@@ -1,37 +1,52 @@
 import os
+import re
 import sys
 import json
 import sqlite3
 
 from skater import Skater
-# from track import Track
+from track import Track
 from event import Event
 
 
 def main():
     s = Skater(
         id=1,
-        first_name='First name',
-        last_name='Last name',
-        nationality='Nationality',
-        gender='Gender',
+        first_name='Bob',
+        last_name='Bobson',
+        nationality='NL',
+        gender='Male',
         date_of_birth='01-01-2000'
     )
 
-    # Print age
-    # age = s.get_age()
-    # print(age)
+    s.print_all_attributes_but_fancy("Overview")
 
-    e = Event()
+    t = Track(
+        id=1,
+        name='Sample Track',
+        city='Sample City',
+        country='Sample Country',
+        outdoor=True,
+        altitude=1000
+    )
 
-    # e.date = "01-01-2000"
-    # print(e.date)
-    # print(e.convert_date("%Y-%m-%d"))
+    t.print_all_attributes_but_fancy("Overview")
 
-    # e.duration = 300000
-    # print(e.convert_duration("%M:%S"))
+    e = Event(
+        id=1,
+        name='Sample Event',
+        track_id=1,
+        date='01-01-2023',
+        distance=5000,
+        duration=300000,
+        laps=25,
+        winner='Bob',
+        category='Human'
+    )
 
+    e.print_all_attributes_but_fancy("Overview")
 
+    e.add_skater(s)
 
 
 if __name__ == "__main__":
