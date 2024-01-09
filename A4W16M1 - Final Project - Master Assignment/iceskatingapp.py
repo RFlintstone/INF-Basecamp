@@ -10,28 +10,31 @@ from event import Event
 
 
 def main():
+    prepare()
+
     s = Skater(
-        id=1,
+        id=-1,
         first_name='Bob',
         last_name='Bobson',
         nationality='NL',
         gender='Male',
         date_of_birth='01-01-2000'
     )
+    s.insert_skater()
 
-    s.print_all_attributes_but_fancy("Overview")
+    # s.print_all_attributes_but_fancy("Overview")
 
-    t = Track(
-        id=1,
-        name='Sample Track',
-        city='Sample City',
-        country='Sample Country',
-        outdoor=True,
-        altitude=1000
-    )
-
-    t.print_all_attributes_but_fancy("Overview")
-
+    # t = Track(
+    #     id=1,
+    #     name='Sample Track',
+    #     city='Sample City',
+    #     country='Sample Country',
+    #     outdoor=True,
+    #     altitude=1000
+    # )
+    #
+    # t.print_all_attributes_but_fancy("Overview")
+    #
     e = Event(
         id=1,
         name='Sample Event',
@@ -44,9 +47,20 @@ def main():
         category='Human'
     )
 
-    e.print_all_attributes_but_fancy("Overview")
+    # e.print_all_attributes_but_fancy("Overview")
 
     e.add_skater(s)
+
+
+def prepare():
+    conn = sqlite3.connect(os.path.join(sys.path[0], 'iceskatingapp.db'))
+
+    conn.execute('''DELETE FROM skaters''')
+    conn.execute('''DELETE FROM event_skaters''')
+    conn.execute('''UPDATE sqlite_sequence SET seq = 0 WHERE name = "skaters"''')
+    conn.execute('''UPDATE sqlite_sequence SET seq = 0 WHERE name = "event_skaters"''')
+    conn.commit()
+    conn.close()
 
 
 if __name__ == "__main__":

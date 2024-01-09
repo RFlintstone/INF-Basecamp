@@ -1,4 +1,8 @@
+import os
+import sys
+import sqlite3
 from datetime import datetime
+
 
 class Skater:
     def __init__(self, id: int, first_name: str, last_name: str, nationality: str,
@@ -9,6 +13,7 @@ class Skater:
         self.nationality = nationality
         self.gender = gender
         self.date_of_birth = date_of_birth
+        self.db_conn = sqlite3.connect(os.path.join(sys.path[0], 'iceskatingapp.db'))
 
     def __repr__(self) -> str:
         return "{}({})".format(type(self).__name__,
@@ -21,6 +26,46 @@ class Skater:
 
     def get_events(self) -> list:
         return self.__repr__()
+
+    def insert_skater(self):
+        # Create a database connection
+        insert_sql = '''INSERT INTO skaters (first_name, last_name, nationality, gender, date_of_birth) VALUES (?, ?, ?, ?, ?)'''
+        c = self.db_conn.cursor()
+
+        c.execute(insert_sql, (self.first_name, self.last_name, self.nationality, self.gender, self.date_of_birth))
+        self.id = c.lastrowid
+
+        c.connection.commit()
+        c.close()
+
+        self.fetch_scater()
+
+    def fetch_scater(self):
+        # Create a database connection
+        c = self.db_conn.cursor()
+        c.execute("SELECT * FROM skaters")
+
+        # Fetch column names and print them joined by ' | '
+        names = [description[0] for description in c.description]
+        header = ' | '.join(f"{name:<20}" for name in names)
+        print("\n")
+
+        # Print the column names
+        print(header)
+
+        # Print a dashed line of the same width as the header
+        print('-' * len(header))
+
+        # Fetch and print all rows
+        rows = c.fetchall()
+        if len(rows) == 0:
+            print("No rows")
+        else:
+            for row in rows:
+                print(' | '.join(
+                    f"{str(r) if r is not None else str(type(r)):<20}" for r in row))  # Format items and concatenate
+            print("\n")
+        c.close()
 
     def print_all_attributes_but_fancy(self, task_name: str = "") -> None:
         name = type(self).__name__
