@@ -1,3 +1,4 @@
+import importlib
 import os
 import sys
 import sqlite3
@@ -6,14 +7,15 @@ from datetime import datetime
 
 class Skater:
     def __init__(self, id: int, first_name: str, last_name: str, nationality: str,
-                 gender: str, date_of_birth: datetime.date) -> None:
+                 gender: str, date_of_birth: datetime.date, database) -> None:
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
         self.nationality = nationality
         self.gender = gender
         self.date_of_birth = date_of_birth
-        self.db_conn = sqlite3.connect(os.path.join(sys.path[0], 'iceskatingapp.db'))
+        self.database = database
+        self.db_conn = self.database.db_connect()
 
     def __repr__(self) -> str:
         return "{}({})".format(type(self).__name__,

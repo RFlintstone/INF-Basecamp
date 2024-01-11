@@ -12,13 +12,16 @@ from event import Event
 def main():
     prepare()
 
+    db = Database()
+
     s = Skater(
         id=-1,
         first_name='Bob',
         last_name='Bobson',
         nationality='NL',
         gender='Male',
-        date_of_birth='01-01-2000'
+        date_of_birth='01-01-2000',
+        database=db
     )
     s.insert_skater()
 
@@ -61,6 +64,23 @@ def prepare():
     conn.execute('''UPDATE sqlite_sequence SET seq = 0 WHERE name = "event_skaters"''')
     conn.commit()
     conn.close()
+
+
+class Database:
+    def db_connect(self):
+        db_file = os.path.join(sys.path[0], 'iceskatingapp.db')
+
+        if not os.path.exists(db_file):
+            print(f"Error - Database file {db_file} does not exist")
+            return
+
+        conn = sqlite3.connect(db_file)
+
+        if conn is None:
+            print(f"Error - Failed to connect to {os.path.basename(db_file)}")
+        else:
+            print(f"Successfully connected to: {os.path.basename(db_file)}")
+        return conn
 
 
 if __name__ == "__main__":
