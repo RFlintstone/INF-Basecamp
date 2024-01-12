@@ -6,6 +6,8 @@ from datetime import datetime
 
 
 class Skater:
+    _last_id = 0
+
     def __init__(self, id: int, first_name: str, last_name: str, nationality: str,
                  gender: str, date_of_birth: datetime.date, database) -> None:
         self.database = database
@@ -18,6 +20,8 @@ class Skater:
         self.gender = gender
         self.date_of_birth = date_of_birth
 
+        Skater._last_id += 1
+
     def __repr__(self) -> str:
         return "{}({})".format(type(self).__name__,
                                ", ".join([f"{key}={value!s}" for key, value in self.__dict__.items()]))
@@ -29,6 +33,10 @@ class Skater:
 
     def get_events(self) -> list:
         return self.__repr__()
+
+    @classmethod # I opted in for classmethod because it lets 'get_lastid()' work with information that's the same for all Skater objects, not just one individual one.
+    def get_lastid(self) -> int:
+        return self._last_id
 
     def print_all_attributes_but_fancy(self, task_name: str = "") -> None:
         name = type(self).__name__

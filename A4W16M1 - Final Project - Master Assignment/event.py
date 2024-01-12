@@ -6,6 +6,7 @@ import sys
 from skater import Skater
 from track import Track
 
+
 class Event:
     id: int
     name: str
@@ -17,7 +18,8 @@ class Event:
     winner: str
     category: str
 
-    def __init__(self, id: int, name: str, track_id: int, date: datetime, distance: int, duration: float, laps: int, winner: str, category: str) -> None:
+    def __init__(self, id: int, name: str, track_id: int, date: datetime, distance: int, duration: float, laps: int,
+                 winner: str, category: str, database) -> None:
         self.id = id
         self.name = name
         self.track_id = track_id
@@ -28,7 +30,7 @@ class Event:
         self.winner = winner
         self.category = category
         self.db_conn = sqlite3.connect(os.path.join(sys.path[0], 'iceskatingapp.db'))
-
+        Event.database = database
 
     # Representation method
     # This will format the output in the correct order
@@ -36,6 +38,28 @@ class Event:
     def __repr__(self) -> str:
         return "{}({})".format(type(self).__name__,
                                ", ".join([f"{key}={value!s}" for key, value in self.__dict__.items()]))
+
+    @classmethod
+    def get_events(cls) -> list:
+        event_data = cls.database.db_fetch("events")
+        event_objects = []
+
+        for data in event_data:
+            event = Event(
+                id=data[0],  # Dynamic id as per iteration
+                name=data[1],  # Static data
+                track_id=data[2],  # Static data
+                date=data[3],  # Static data
+                distance=data[4],  # Static data
+                duration=data[5],  # Static data
+                laps=data[6],  # Static data
+                winner=data[7],  # Static data
+                category=data[8],  # Static data
+                database=cls.database
+            )
+            event_objects.append(event)
+
+        return event_objects
 
     # add_skater(skater: Skater) (adds skater to event table event_skaters via the id of the passed
     # skater object and the id of this event
@@ -77,7 +101,6 @@ class Event:
                     f"{str(r) if r is not None else str(type(r)):<20}" for r in row))  # Format items and concatenate
             print("\n")
         c.close()
-
 
     # get_skaters() (returns a list of Skaters
     # search in table event_skaters for all skater_id’s on this event, search all skaters with those id’s
